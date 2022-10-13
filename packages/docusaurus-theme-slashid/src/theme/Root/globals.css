@@ -1,0 +1,43 @@
+@font-face {
+  font-family: 'Inter';
+  src: url(../../static/fonts/Inter-400.woff);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url(../../static/fonts/Inter-500.woff);
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url(../../static/fonts/Inter-600.woff);
+  font-weight: 600;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+
+  width: 100%;
+  min-height: 100vh;
+
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: white;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+

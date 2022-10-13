@@ -1,0 +1,27 @@
+.host {
+  padding: 88px;
+
+  max-width: 704px;
+  width: 100%;
+
+  background-color: white;
+
+  border-radius: 16px;
+
+  box-shadow: 0px 32px 80px hsla(240, 10%, 94%, 1);
+}
+
+.title {
+  margin-bottom: 12px;
+
+  font-size: 18px;
+  line-height: 28px;
+  color: hsla(240, 10%, 15%, 1);
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .host {
+    padding: 20px;
+  }
+}

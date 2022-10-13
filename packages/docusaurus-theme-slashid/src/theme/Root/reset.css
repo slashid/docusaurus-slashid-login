@@ -1,0 +1,20 @@
+button,
+input,
+textarea {
+  border: none;
+  outline: 0;
+  padding: 0;
+  font: inherit;
+  background: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+tbody,
+tr,
+td {
+  vertical-align: middle;
+}

@@ -1,0 +1,150 @@
+.host {
+  padding: 40px;
+
+  position: relative;
+
+  width: 100vw;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  padding: 64px 64px 80px;
+
+  max-width: 520px;
+  width: 100%;
+
+  border-radius: 16px;
+
+  box-shadow: 0px 32px 80px hsla(240, 10%, 94%, 1);
+}
+
+.logo {
+  display: block;
+}
+
+.title {
+  margin-bottom: 48px;
+
+  font-size: 34px;
+  line-height: 42px;
+  letter-spacing: 0.24px;
+  color: hsla(240, 10%, 15%, 1);
+  font-weight: 600;
+}
+
+.title {
+  margin-bottom: 12px;
+
+  font-size: 18px;
+  line-height: 28px;
+  color: hsla(240, 10%, 15%, 1);
+  font-weight: 500;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  color: hsla(240, 10%, 45%, 1);
+  font-weight: 400;
+}
+
+.description:not(:last-of-type) {
+  margin-bottom: 12px;
+}
+
+.otpButtonContainer {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+}
+
+.divider {
+  margin-top: 40px;
+  height: 1.2px;
+  width: 100%;
+
+  background-color: hsla(240, 23%, 97%, 1);
+
+  border: 0px;
+}
+
+.verificationInfo {
+  margin-top: 24px;
+
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  color: hsla(240, 10%, 45%, 1);
+  font-weight: 400;
+}
+
+.resendButton {
+  color: hsla(222, 88%, 58%, 1);
+
+  cursor: pointer;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.resendButton:hover {
+  color: hsla(222, 88%, 46%, 1);
+}
+
+.header {
+  margin-bottom: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.goBackButton {
+  display: flex;
+  align-items: center;
+
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.2px;
+  color: hsla(240, 10%, 45%, 1);
+  font-weight: 400;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.chevronLeft {
+  margin-right: 8px;
+}
+
+.chevronLeft svg {
+  display: block;
+}
+
+.goBackButton:hover {
+  opacity: 0.6;
+}
+
+@media (max-width: 1024px) {
+  .host {
+    padding: 0px 20px;
+  }
+
+  .content {
+    padding: 40px 20px;
+  }
+
+  .description {
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.2px;
+    color: hsla(240, 10%, 45%, 1);
+    font-weight: 400;
+  }
+}

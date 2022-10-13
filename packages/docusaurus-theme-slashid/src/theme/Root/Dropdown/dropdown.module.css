@@ -1,0 +1,182 @@
+.host {
+  width: 100%;
+}
+
+.label {
+  margin-bottom: 8px;
+
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.2px;
+  color: hsla(240, 10%, 30%, 1);
+  font-weight: 400;
+}
+
+.dropdownTrigger {
+  padding: 13px 18px;
+
+  height: 50px;
+  width: 100%;
+
+  background-color: hsla(0, 0%, 100%, 1);
+
+  border: 1.2px solid hsla(240, 29%, 92%, 1);
+  border-radius: 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  cursor: pointer;
+
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  color: hsla(240, 10%, 45%, 1);
+  font-weight: 400;
+}
+
+.dropdownTrigger.open {
+  border: 1.2px solid hsla(222, 88%, 58%, 1);
+
+  box-shadow: 0px 0px 0px 1px hsla(217, 100%, 87%, 1);
+}
+
+.dropdownTrigger[data-disabled] {
+  cursor: not-allowed;
+
+  border: 1.2px solid hsla(240, 29%, 92%, 1);
+
+  color: hsla(240, 29%, 92%, 1);
+}
+
+.placeholder {
+  color: hsla(240, 10%, 65%, 1);
+}
+
+.dropdownTrigger[data-disabled] .placeholder {
+  color: hsla(240, 29%, 92%, 1);
+}
+
+.optionsContainer {
+  padding: 8px;
+
+  min-width: 392px;
+  width: 100%;
+
+  z-index: 10;
+
+  display: none;
+
+  background-color: hsla(0, 0%, 100%, 1);
+
+  border: 1.2px solid hsla(240, 29%, 95%, 1);
+  border-radius: 4px;
+
+  box-shadow: 0px 4px 20px hsla(240, 29%, 95%, 0.8);
+}
+
+.optionsContainer.open {
+  display: block;
+}
+
+.option {
+  padding: 8px 10px;
+
+  height: 40px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  color: hsla(240, 10%, 45%, 1);
+  font-weight: 400;
+}
+
+.option:hover {
+  background-color: hsla(240, 23%, 97%, 1);
+
+  outline: none;
+
+  border-radius: 4px;
+
+  cursor: pointer;
+}
+
+.option::first-letter {
+  text-transform: uppercase;
+}
+
+.option.selected {
+  color: hsla(240, 10%, 15%, 1);
+}
+
+.checkmark {
+  margin-right: 8px;
+}
+
+.host.small .dropdownTrigger {
+  padding: 5px 8px;
+
+  height: 40px;
+
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.2px;
+  color: hsla(240, 10%, 45%, 1);
+  font-weight: 400;
+}
+
+.host.small .option {
+  padding: 5px 8px;
+
+  height: 40px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.2px;
+  color: hsla(240, 10%, 45%, 1);
+  font-weight: 400;
+}
+
+@media (max-width: 1024px) {
+  .dropdownTrigger {
+    padding: 5px 8px;
+
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.2px;
+    color: hsla(240, 10%, 45%, 1);
+    font-weight: 400;
+  }
+
+  .option {
+    padding: 8px 10px;
+
+    height: 40px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.2px;
+    color: hsla(240, 10%, 45%, 1);
+    font-weight: 400;
+  }
+}
+
+@media (max-width: 540px) {
+  .optionsContainer {
+    min-width: auto;
+    width: calc(100vw - 40px - 40px);
+  }
+}
