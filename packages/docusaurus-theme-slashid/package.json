@@ -30,8 +30,13 @@
     "format:lib-next": "prettier --config ../../.prettierrc.json --write \"lib-next/**/*.{js,ts,jsx,tsc}\""
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "2.0.1",
-    "@docusaurus/types": "2.0.1",
+    "@docusaurus/module-type-aliases": "^2.1.0",
+    "@docusaurus/theme-common": "^2.1.0",
+    "@docusaurus/core": "^2.1.0",
+    "@docusaurus/mdx-loader": "^2.1.0",
+    "@docusaurus/types": "^2.1.0",
+    "@docusaurus/utils": "^2.1.0",
+    "@docusaurus/utils-validation": "^2.1.0",
     "@types/concurrently": "^6.3.0",
     "@types/crypto-js": "^4.1.0",
     "@types/fs-extra": "^9.0.13",
@@ -41,7 +46,13 @@
     "concurrently": "^5.2.0"
   },
   "dependencies": {
-    "@docusaurus/theme-common": "^2.0.1",
+    "@docusaurus/module-type-aliases": "^2.1.0",
+    "@docusaurus/theme-common": "^2.1.0",
+    "@docusaurus/core": "^2.1.0",
+    "@docusaurus/mdx-loader": "^2.1.0",
+    "@docusaurus/types": "^2.1.0",
+    "@docusaurus/utils": "^2.1.0",
+    "@docusaurus/utils-validation": "^2.1.0",
     "@mdx-js/react": "^1.6.21",
     "@radix-ui/react-dropdown-menu": "^1.0.0",
     "@reduxjs/toolkit": "^1.7.1",

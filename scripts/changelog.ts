@@ -11,7 +11,7 @@ import { getOutput } from "./utils/get-output";
 import { printBanner, printSpacer } from "./utils/print-utils";
 
 const ORG = "slashid";
-const REPO = "docusaurus-slashid";
+const REPO = "docusaurus-slashid-login";
 const BRANCH = "main";
 
 const COMMIT_FILTERS = [/\(release\) v.*/];

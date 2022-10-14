@@ -5,5 +5,4 @@
  * LICENSE file in the root directory of this source tree.
  * ========================================================================== */
 
-// TODO: Remove this when https://github.com/facebook/docusaurus/issues/6087 is resolved.
 declare module "@docusaurus/theme-translations";
