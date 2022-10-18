@@ -17,6 +17,7 @@ module.exports = {
     "plugin:jest/style",
     "plugin:testing-library/react",
     "plugin:jest-dom/recommended",
+    "plugin:react-hooks/recommended",
   ],
   plugins: ["import", "header"],
   rules: {
