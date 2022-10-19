@@ -36,7 +36,7 @@ yarn add @slashid/docusaurus-theme-slashid
 
 ## Configuring `docusaurus.config.js`
 
-Add the following `themes` to `docusaurus.config.js` to add `docusaurus-theme-slashid`.
+Add the following to `docusaurus.config.js` to start using the theme:
 
 ```js
 // docusaurus.config.js
@@ -52,7 +52,7 @@ Add the following `themes` to `docusaurus.config.js` to add `docusaurus-theme-sl
         orgID: "your slash id org id"
       },
 
-  themes: ["docusaurus-theme-slashid"],
+  themes: ["@slashid/docusaurus-theme-slashid"],
 }
 ```
 
