@@ -39,7 +39,7 @@ export const SlashIDContext = createContext<ISlashIDContext>({
 SlashIDContext.displayName = "SlashIDContext";
 
 const STORAGE_KEY = "MY_USER_TOKEN";
-const STORAGE_IDENTIFIER_KEY = "USER_IDENTIFIER";
+export const STORAGE_IDENTIFIER_KEY = "USER_IDENTIFIER";
 
 export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
   oid,

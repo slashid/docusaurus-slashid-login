@@ -10,7 +10,7 @@ import React from "react";
 import useIsBrowser from "@docusaurus/useIsBrowser";
 import toast, { Toaster } from "react-hot-toast";
 
-import { useSlashId } from "./auth-context";
+import { STORAGE_IDENTIFIER_KEY, useSlashId } from "./auth-context";
 import Button from "./Button";
 import Dropdown from "./Dropdown";
 import ChevronLeft from "./Icons/ChevronLeft";
@@ -61,26 +61,29 @@ export const Auth: React.FC<Props> = ({ oid }) => {
     });
   };
 
-  const getAvailableMethods = async (identifier: string) => {
-    if (!isBrowser || !sid) {
-      return;
-    }
+  const getAvailableMethods = React.useCallback(
+    async (identifier: string) => {
+      if (!isBrowser || !sid) {
+        return;
+      }
 
-    // @ts-ignore
-    const methods = await sid.getAvailableAuthenticationMethods(identifier);
+      // @ts-ignore
+      const methods = await sid.getAvailableAuthenticationMethods(identifier);
 
-    // @ts-ignore
-    setDropdownOptions(methods);
+      // @ts-ignore
+      setDropdownOptions(methods);
 
-    if (
-      window.localStorage.getItem("USER_IDENTIFIER") !== "" &&
-      window.localStorage.getItem("USER_IDENTIFIER") !== null
-    ) {
-      setInputValue(window.localStorage.getItem("USER_IDENTIFIER") as string);
-    }
+      const existingIdentifier = window.localStorage.getItem(
+        STORAGE_IDENTIFIER_KEY
+      );
+      if (existingIdentifier) {
+        setInputValue(window.localStorage.getItem("USER_IDENTIFIER") as string);
+      }
 
-    setIsLoadingDropdownOptions(false);
-  };
+      setIsLoadingDropdownOptions(false);
+    },
+    [isBrowser, sid]
+  );
 
   React.useEffect(() => {
     if (!isBrowser || !sid) {
@@ -88,7 +91,7 @@ export const Auth: React.FC<Props> = ({ oid }) => {
     }
 
     getAvailableMethods(identifierType);
-  }, [identifierType, sid, isBrowser]);
+  }, [identifierType, sid, isBrowser, getAvailableMethods]);
 
   if (!sid) {
     return null;
