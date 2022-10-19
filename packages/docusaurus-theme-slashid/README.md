@@ -64,12 +64,6 @@ The `docusaurus-theme-slashid` theme can be configured with the following option
 | --------------- | -------- | ------- | ---------------------------- |
 | `slashID.orgID` | `string` | `null`  | The SlashID organization ID. |
 
-## Contributors
-
-<a href="https://github.com/slashid/docusaurus-slashid-login/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=slashid/docusaurus-slashid-login" />
-</a>
-
 ## Support
 
 Please read [SUPPORT.md](https://github.com/slashid/docusaurus-slashid-login/blob/main/SUPPORT.md) for details on how to get support for this project.
