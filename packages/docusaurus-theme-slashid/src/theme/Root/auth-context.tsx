@@ -13,6 +13,7 @@ import React, {
   useState,
 } from "react";
 
+import useIsBrowser from "@docusaurus/useIsBrowser";
 import { SlashID, User } from "@slashid/slashid";
 
 export interface SlashIDProviderProps {
@@ -44,6 +45,7 @@ export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
   oid,
   children,
 }) => {
+  const isBrowser = useIsBrowser();
   const [sid, setSid] = useState<SlashID | undefined>(undefined);
   const [user, setUser] = useState<User | undefined>(undefined);
 
@@ -87,12 +89,11 @@ export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
   }, []);
 
   useEffect(() => {
-    const slashId = new SlashID({
-      baseURL: "https://sandbox.slashid.dev",
-      sdkURL: "https://cdn.slashid.dev/sdk.html",
-    });
-    setSid(slashId);
-  }, []);
+    if (isBrowser) {
+      const slashId = new SlashID();
+      setSid(slashId);
+    }
+  }, [isBrowser]);
 
   useEffect(() => {
     if (sid && window) {
