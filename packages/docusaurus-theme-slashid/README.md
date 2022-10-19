@@ -4,9 +4,9 @@
 
 SlashID theme to add authentication to Docusaurus.
 
-[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/slashid/docusaurus-slashid-login/blob/HEAD/LICENSE) [![npm latest package](https://img.shields.io/npm/v/docusaurus-theme-slashid/latest.svg)](https://www.npmjs.com/package/docusaurus-theme-slashid) [![npm downloads](https://img.shields.io/npm/dm/docusaurus-theme-slashid.svg)](https://www.npmjs.com/package/docusaurus-theme-slashid)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/slashid/docusaurus-slashid-login/blob/HEAD/LICENSE) [![npm latest package](https://img.shields.io/npm/v/@slashid/docusaurus-theme-slashid/latest.svg)](https://www.npmjs.com/package/@slashid/docusaurus-theme-slashid) [![npm downloads](https://img.shields.io/npm/dm/@slashid/docusaurus-theme-slashid.svg)](https://www.npmjs.com/package/@slashid/docusaurus-theme-slashid)
 <br/>
-[![build](https://github.com/slashid/docusaurus-slashid-login/actions/workflows/validate.yaml/badge.svg)](https://github.com/slashid/docusaurus-slashid-login/actions/workflows/validate.yaml) [![prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/slashid/docusaurus-slashid-login/blob/HEAD/CONTRIBUTING.md#pull-requests)
+[![prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/slashid/docusaurus-slashid-login/blob/HEAD/CONTRIBUTING.md#pull-requests)
 <br />
 
 </div>
@@ -19,7 +19,7 @@ SlashID theme to add authentication to Docusaurus.
 
 ## Overview
 
-The `docusaurus-theme-slashid` package extends Docusaurus to add authentication to docusaurus. The theme can be combined with [docusaurus openapi docs](https://github.com/slashid/docusaurus-slashid-login) to preload API keys and API parameters directly through SlashID attributes.
+The `@slashid/docusaurus-theme-slashid` package extends Docusaurus to add authentication to docusaurus. The theme can be combined with [docusaurus openapi docs](https://github.com/slashid/docusaurus-slashid-login) to preload API keys and API parameters directly through SlashID attributes.
 
 Key Features:
 
@@ -31,7 +31,7 @@ Key Features:
 Theme:
 
 ```bash
-yarn add docusaurus-theme-slashid
+yarn add @slashid/docusaurus-theme-slashid
 ```
 
 ## Configuring `docusaurus.config.js`
