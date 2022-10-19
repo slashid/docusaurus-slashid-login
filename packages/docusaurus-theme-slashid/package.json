@@ -1,7 +1,7 @@
 {
   "name": "@slashid/docusaurus-theme-slashid",
   "description": "SlashID theme for Docusaurus.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "keywords": [
     "login",
@@ -31,10 +31,10 @@
     "format:lib-next": "prettier --config ../../.prettierrc.json --write \"lib-next/**/*.{js,ts,jsx,tsc}\""
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^2.1.0",
-    "@docusaurus/theme-common": "^2.1.0",
     "@docusaurus/core": "^2.1.0",
     "@docusaurus/mdx-loader": "^2.1.0",
+    "@docusaurus/module-type-aliases": "^2.1.0",
+    "@docusaurus/theme-common": "^2.1.0",
     "@docusaurus/types": "^2.1.0",
     "@docusaurus/utils": "^2.1.0",
     "@docusaurus/utils-validation": "^2.1.0",
@@ -47,10 +47,10 @@
     "concurrently": "^5.2.0"
   },
   "dependencies": {
-    "@docusaurus/module-type-aliases": "^2.1.0",
-    "@docusaurus/theme-common": "^2.1.0",
     "@docusaurus/core": "^2.1.0",
     "@docusaurus/mdx-loader": "^2.1.0",
+    "@docusaurus/module-type-aliases": "^2.1.0",
+    "@docusaurus/theme-common": "^2.1.0",
     "@docusaurus/types": "^2.1.0",
     "@docusaurus/utils": "^2.1.0",
     "@docusaurus/utils-validation": "^2.1.0",
