@@ -246,7 +246,7 @@ export const Auth: React.FC<Props> = ({ oid }) => {
           </>
         ) : (
           <>
-            <h1 className={css.title}>Welcome to /id - Ivan</h1>
+            <h1 className={css.title}>Welcome to /id</h1>
 
             <Dropdown
               changeChosenOption={(e) => triggerIdentifierChange(e)}
