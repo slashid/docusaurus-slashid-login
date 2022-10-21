@@ -1,3 +1,7 @@
+## 0.1.6 (Oct 21, 2022)
+
+- Remove the dev label
+
 ## 0.1.4 (Oct 19, 2022)
 
 - Update docs with correct links and package references
