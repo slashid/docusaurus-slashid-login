@@ -8,28 +8,22 @@
 import React from "react";
 
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import useIsBrowser from "@docusaurus/useIsBrowser";
+import { SlashIDProvider } from "@slashid/react";
 
 import { ThemeConfig } from "../../types";
 import { Auth } from "./auth";
-import { SlashIDProvider, useSlashId } from "./auth-context";
-
 import "./reset.css";
 import "./globals.css";
+import { AuthProvider, useAuth } from "./auth-context";
 
 interface AuthCheckProps {
   oid: string;
   children: React.ReactNode;
 }
 const AuthCheck: React.FC<AuthCheckProps> = ({ oid, children }) => {
-  const { user } = useSlashId();
-  const isBrowser = useIsBrowser();
+  const { showLogin } = useAuth();
 
-  if (!isBrowser) {
-    return null;
-  }
-
-  return user ? <>{children}</> : <Auth oid={oid} />;
+  return showLogin ? <Auth /> : <>{children}</>;
 };
 
 // Default implementation, that you can customize
@@ -39,8 +33,10 @@ export default function Root({ children }: any) {
   const options = themeConfig.slashID;
 
   return (
-    <SlashIDProvider oid={options?.orgID!}>
-      <AuthCheck oid={options?.orgID!}>{children}</AuthCheck>
+    <SlashIDProvider oid={options?.orgID!} tokenStorage="localStorage">
+      <AuthProvider>
+        <AuthCheck oid={options?.orgID!}>{children}</AuthCheck>
+      </AuthProvider>
     </SlashIDProvider>
   );
 }

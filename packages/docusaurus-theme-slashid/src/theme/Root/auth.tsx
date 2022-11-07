@@ -8,9 +8,11 @@
 import React from "react";
 
 import useIsBrowser from "@docusaurus/useIsBrowser";
+import { useSlashID } from "@slashid/react";
+import { PersonHandleType } from "@slashid/slashid";
 import toast, { Toaster } from "react-hot-toast";
 
-import { STORAGE_IDENTIFIER_KEY, useSlashId } from "./auth-context";
+import { useAuth } from "./auth-context";
 import Button from "./Button";
 import Dropdown from "./Dropdown";
 import ChevronLeft from "./Icons/ChevronLeft";
@@ -28,12 +30,12 @@ import {
   useValidateNumber,
 } from "./utils";
 
-interface Props {
-  oid: string;
-}
+// TODO we could expose the constant or provide a getter in the SDK
+const STORAGE_IDENTIFIER_KEY = "@slashid/IDENTIFIERS";
 
-export const Auth: React.FC<Props> = ({ oid }) => {
-  const { sid, login } = useSlashId();
+export const Auth: React.FC = () => {
+  const { sid, logIn, user } = useSlashID();
+  const { showLogin, setShowLogin } = useAuth();
   const isBrowser = useIsBrowser();
   const [inputValue, setInputValue] = React.useState("");
   const [isLoadingDropdownOptions, setIsLoadingDropdownOptions] =
@@ -43,8 +45,9 @@ export const Auth: React.FC<Props> = ({ oid }) => {
   const [chosenOption, setChosenOption] = React.useState<undefined | string>(
     undefined
   );
-  const [identifierType, setIdentifierType] =
-    React.useState<string>("email_address");
+  const [identifierType, setIdentifierType] = React.useState<PersonHandleType>(
+    PersonHandleType.EmailAddress
+  );
   const identifierOptions = ["phone_number", "email_address"];
   const [dropdownOptions, setDropdownOptions] = React.useState<
     undefined | string[]
@@ -55,6 +58,8 @@ export const Auth: React.FC<Props> = ({ oid }) => {
   const { validateEmail } = useValidateEmail();
   const { validateNumber } = useValidateNumber();
 
+  console.log("Auth rendered", { sid, showLogin, user });
+
   const showErrorToast = (message: string, duration: number | undefined) => {
     toast.custom(() => <Toast message={message} />, {
       duration: duration ? duration : 3000,
@@ -62,7 +67,7 @@ export const Auth: React.FC<Props> = ({ oid }) => {
   };
 
   const getAvailableMethods = React.useCallback(
-    async (identifier: string) => {
+    async (identifier: PersonHandleType) => {
       if (!isBrowser || !sid) {
         return;
       }
@@ -77,7 +82,9 @@ export const Auth: React.FC<Props> = ({ oid }) => {
         STORAGE_IDENTIFIER_KEY
       );
       if (existingIdentifier) {
-        setInputValue(window.localStorage.getItem("USER_IDENTIFIER") as string);
+        setInputValue(
+          window.localStorage.getItem(STORAGE_IDENTIFIER_KEY) as string
+        );
       }
 
       setIsLoadingDropdownOptions(false);
@@ -108,14 +115,14 @@ export const Auth: React.FC<Props> = ({ oid }) => {
   };
 
   const resetValues = () => {
-    setIdentifierType("email_address");
+    setIdentifierType(PersonHandleType.EmailAddress);
     setChosenOption(undefined);
     setInputValue("");
     setDropdownOptions(undefined);
     setIsLoginLoading(false);
   };
 
-  const triggerIdentifierChange = (e: string) => {
+  const triggerIdentifierChange = (e: PersonHandleType) => {
     setIdentifierType(e);
     getAvailableMethods(e);
     setChosenOption(undefined);
@@ -128,19 +135,22 @@ export const Auth: React.FC<Props> = ({ oid }) => {
       try {
         setIsVerificationStep(true);
 
-        await login({
-          factor: {
+        await logIn({
+          handle: {
             type: identifierType,
             value: inputValue,
           },
-          options: {
+          factor: {
+            // @ts-expect-error TODO better type support
             method: chosenOption,
             options: {
+              // @ts-expect-error TODO better type support
               getOTP: getOtp, // only needed for "otp_via_sms", ignored otherwise
               attachment: "platform", //only needed for "webauthn"
             },
           },
         });
+        setShowLogin(false);
 
         resetValues();
       } catch (error: any) {
@@ -250,7 +260,7 @@ export const Auth: React.FC<Props> = ({ oid }) => {
 
             <Dropdown
               changeChosenOption={(e) => triggerIdentifierChange(e)}
-              chosenOption={identifierType}
+              chosenOption={identifierType.toString()}
               options={identifierOptions}
               label="Identifier type"
               optionPlaceholder="Select an identifier type"
@@ -258,7 +268,7 @@ export const Auth: React.FC<Props> = ({ oid }) => {
 
             <div style={{ width: "100%", paddingTop: "24px" }} />
 
-            {identifierType === "email_address" && (
+            {identifierType === PersonHandleType.EmailAddress && (
               <Input
                 label="Email address"
                 onChange={(e) => setInputValue(e.target.value)}
@@ -267,7 +277,7 @@ export const Auth: React.FC<Props> = ({ oid }) => {
               />
             )}
 
-            {identifierType === "phone_number" && (
+            {identifierType === PersonHandleType.PhoneNumber && (
               <PhoneNumberInput
                 label="Phone number"
                 onChange={setInputValue}
@@ -281,7 +291,10 @@ export const Auth: React.FC<Props> = ({ oid }) => {
             <Dropdown
               changeChosenOption={setChosenOption}
               chosenOption={chosenOption}
-              options={filterOutOptions(identifierType, dropdownOptions)}
+              options={filterOutOptions(
+                identifierType.toString(),
+                dropdownOptions
+              )}
               label=" Authentication method"
               optionPlaceholder={
                 isLoadingDropdownOptions
@@ -297,6 +310,15 @@ export const Auth: React.FC<Props> = ({ oid }) => {
               label="Log in"
               isDisabled={checkIfButtonShouldBeDisabled()}
               onClick={triggerLogin}
+            />
+
+            <div style={{ width: "100%", paddingTop: "16px" }} />
+
+            <Button
+              label="Cancel"
+              isSecondary
+              isSmall
+              onClick={() => setShowLogin(false)}
             />
           </>
         )}
