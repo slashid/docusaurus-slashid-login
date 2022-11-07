@@ -78,10 +78,12 @@ export const Auth: React.FC = () => {
       // @ts-ignore
       setDropdownOptions(methods);
 
+      console.log("Window in getAvailableMethods");
       const existingIdentifier = window.localStorage.getItem(
         STORAGE_IDENTIFIER_KEY
       );
       if (existingIdentifier) {
+        console.log("Window after existingIdentifier");
         setInputValue(
           window.localStorage.getItem(STORAGE_IDENTIFIER_KEY) as string
         );
@@ -129,6 +131,7 @@ export const Auth: React.FC = () => {
   };
 
   const triggerLogin = async () => {
+    console.log("Window in triggerLogin");
     if (window) {
       setIsLoginLoading(true);
 
