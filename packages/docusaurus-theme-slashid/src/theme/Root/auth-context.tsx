@@ -54,10 +54,19 @@ export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
   const [sid, setSid] = useState<SlashID | undefined>(undefined);
   const [user, setUser] = useState<User | undefined>(undefined);
 
-  const storeUser = (newUser: User) => {
-    setUser(newUser);
-    window.localStorage.setItem(STORAGE_KEY, newUser.token);
-  };
+  const storeUser = React.useCallback(
+    (newUser: User) => {
+      if (isBrowser) {
+        window.localStorage.setItem(STORAGE_KEY, newUser.token);
+        const event = new CustomEvent("slashId:login", {
+          detail: { token: newUser.token },
+        });
+        window.dispatchEvent(event);
+        setUser(newUser);
+      }
+    },
+    [isBrowser]
+  );
 
   const logout = useCallback(() => {
     if (isBrowser) {
@@ -78,10 +87,6 @@ export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
         storeUser(user);
         // @ts-ignore
         window.localStorage.setItem(STORAGE_IDENTIFIER_KEY, factor.value);
-        const event = new CustomEvent("slashId:login", {
-          detail: { token: user.token },
-        });
-        window.dispatchEvent(event);
 
         setShowLogin(false);
         return user;
@@ -89,19 +94,26 @@ export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
         return null;
       }
     },
-    [oid, sid, isBrowser]
+    [sid, isBrowser, oid, storeUser]
   );
 
-  const validateToken = useCallback(async (token: string): Promise<boolean> => {
-    let tempUser = new User(token);
-    let ret = await tempUser.validateToken();
-    if (ret.valid) {
-      const newUser = new User(token);
-      setUser(newUser);
-      return true;
-    }
-    return false;
-  }, []);
+  const validateToken = useCallback(
+    async (token: string): Promise<boolean> => {
+      if (isBrowser) {
+        let tempUser = new User(token);
+        let ret = await tempUser.validateToken();
+        if (ret.valid) {
+          const newUser = new User(token);
+          storeUser(newUser);
+          return true;
+        }
+        window.localStorage.removeItem(STORAGE_KEY);
+        return false;
+      }
+      return false;
+    },
+    [isBrowser, storeUser]
+  );
 
   useEffect(() => {
     if (isBrowser) {
@@ -111,7 +123,7 @@ export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
   }, [isBrowser]);
 
   useEffect(() => {
-    if (sid && window) {
+    if (sid && isBrowser) {
       const loginDirectIdIfPresent = async () => {
         try {
           const tempUser = await sid.getUserFromURL();
@@ -141,15 +153,8 @@ export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
       };
 
       tryImmediateLogin();
-
-      // listen for logout
-      window.addEventListener("slashId:logout", logout);
-
-      return () => window.removeEventListener("slashId:logout", logout);
     }
-
-    return () => null;
-  }, [logout, sid, validateToken]);
+  }, [isBrowser, logout, sid, storeUser, validateToken]);
 
   const contextValue = useMemo(
     () => ({
