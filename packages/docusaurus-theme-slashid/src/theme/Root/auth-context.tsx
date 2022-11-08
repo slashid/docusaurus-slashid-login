@@ -60,20 +60,28 @@ export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
   };
 
   const logout = useCallback(() => {
-    setUser(undefined);
-    setShowLogin(false);
-    window.localStorage.removeItem(STORAGE_KEY);
-  }, []);
+    if (isBrowser) {
+      setUser(undefined);
+      setShowLogin(false);
+      const event = new Event("slashId:logout");
+      window.dispatchEvent(event);
+      window.localStorage.removeItem(STORAGE_KEY);
+    }
+  }, [isBrowser]);
 
   const login = useCallback(
     async ({ factor, options }: { factor: unknown; options: unknown }) => {
-      if (sid) {
+      if (sid && isBrowser) {
         // @ts-ignore
         const user = await sid.id(oid, factor, options);
 
         storeUser(user);
         // @ts-ignore
         window.localStorage.setItem(STORAGE_IDENTIFIER_KEY, factor.value);
+        const event = new CustomEvent("slashId:login", {
+          detail: { token: user.token },
+        });
+        window.dispatchEvent(event);
 
         setShowLogin(false);
         return user;
@@ -81,7 +89,7 @@ export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
         return null;
       }
     },
-    [oid, sid]
+    [oid, sid, isBrowser]
   );
 
   const validateToken = useCallback(async (token: string): Promise<boolean> => {
