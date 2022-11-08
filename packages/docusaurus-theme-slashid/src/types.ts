@@ -11,5 +11,7 @@
 export interface ThemeConfig {
   slashID?: {
     orgID?: string;
+    oidcClientID?: string;
+    oidcProvider?: string;
   };
 }

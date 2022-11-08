@@ -3080,15 +3080,14 @@
     url "^0.11.0"
     uuid "8.3.2"
 
-"@slashid/slashid@^1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@slashid/slashid/-/slashid-1.8.0.tgz#7a9b0f0953857a3e0924eca36027fc4e94a4f5fe"
-  integrity sha512-PVZR5wMZlFwBzyIKy6sRezQf6QNKDUJzkMTl3EyoWVWM38F6PosC3fCSKBhLSlaVOdH0iNauCFMfXoUntQdMig==
+"@slashid/slashid@^1.9.2":
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/@slashid/slashid/-/slashid-1.9.2.tgz#cbcc166c9bb91e8e780d1687b7b43bb80fae61b6"
+  integrity sha512-uwqc2Z/I+yzSDdOhimkrsd/RVsB9XTYiohj6lhgxvu3qImMNhG8S/vpw+Up+2l0a5hZ441JbtPcgrQvTP0Tcgw==
   dependencies:
     "@swc/helpers" "^0.3.13"
     "@types/uuid" "8.3.4"
     docdash "^1.2.0"
-    isomorphic-fetch "^3.0.0"
     jwt-decode "^3.1.2"
     mitt "^3.0.0"
     querystring-es3 "^0.2.1"

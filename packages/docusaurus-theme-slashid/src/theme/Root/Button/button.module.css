@@ -85,3 +85,18 @@
   align-items: center;
   justify-content: center;
 }
+
+.google {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.google > div {
+  margin-right: 0.75rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

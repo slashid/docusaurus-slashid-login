@@ -40,7 +40,11 @@ export default function Root({ children }: any) {
   const options = themeConfig.slashID;
 
   return (
-    <SlashIDProvider oid={options?.orgID!}>
+    <SlashIDProvider
+      oid={options?.orgID!}
+      oidcClientID={options?.oidcClientID}
+      oidcProvider={options?.oidcProvider}
+    >
       <AuthCheck oid={options?.orgID!}>{children}</AuthCheck>
     </SlashIDProvider>
   );
