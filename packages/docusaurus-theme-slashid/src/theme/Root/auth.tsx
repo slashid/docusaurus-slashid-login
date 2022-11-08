@@ -33,12 +33,13 @@ interface Props {
 }
 
 export const Auth: React.FC<Props> = ({ oid }) => {
-  const { sid, login, setShowLogin } = useSlashId();
+  const { sid, login, sso, setShowLogin } = useSlashId();
   const isBrowser = useIsBrowser();
   const [inputValue, setInputValue] = React.useState("");
   const [isLoadingDropdownOptions, setIsLoadingDropdownOptions] =
     React.useState(false);
   const [isVerificationStep, setIsVerificationStep] = React.useState(false);
+  const [isWaitingForSsoStep, setIsWaitingForSsoStep] = React.useState(false);
   const [isLoginLoading, setIsLoginLoading] = React.useState(false);
   const [chosenOption, setChosenOption] = React.useState<undefined | string>(
     undefined
@@ -121,8 +122,27 @@ export const Auth: React.FC<Props> = ({ oid }) => {
     setChosenOption(undefined);
   };
 
+  const triggerSso = async () => {
+    if (isBrowser) {
+      setIsLoginLoading(true);
+
+      try {
+        setIsWaitingForSsoStep(true);
+
+        await sso();
+
+        resetValues();
+      } catch (error: any) {
+        console.error(error);
+        setIsLoginLoading(false);
+        showErrorToast(getErrorMessage(error.statusText), 3000);
+      }
+    }
+    return;
+  };
+
   const triggerLogin = async () => {
-    if (window) {
+    if (isBrowser) {
       setIsLoginLoading(true);
 
       try {
@@ -179,7 +199,7 @@ export const Auth: React.FC<Props> = ({ oid }) => {
           <i className={css.logo}>
             <Logo />
           </i>
-          {isVerificationStep && (
+          {isVerificationStep || isWaitingForSsoStep ? (
             <button
               onClick={() => {
                 setIsVerificationStep(false);
@@ -192,10 +212,20 @@ export const Auth: React.FC<Props> = ({ oid }) => {
               </i>
               Go back
             </button>
+          ) : (
+            <button
+              onClick={() => setShowLogin(false)}
+              className={css.goBackButton}
+            >
+              <i className={css.chevroLeft}>
+                <ChevronLeft />
+              </i>
+              Cancel
+            </button>
           )}
         </div>
 
-        {isVerificationStep ? (
+        {isVerificationStep || isWaitingForSsoStep ? (
           <>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <Spinner color={SpinnerColorType.Blue} isBig size={48} />
@@ -203,12 +233,27 @@ export const Auth: React.FC<Props> = ({ oid }) => {
 
             <div style={{ width: "100%", paddingBottom: "48px" }} />
 
-            <p className={css.title}>Credentials confirmation</p>
-            <p className={css.description}>{getMethodText(chosenOption!)}</p>
-            <p className={css.description}>
-              After interacting with the confirmation, please come back to this
-              screen to proceed.
-            </p>
+            {isWaitingForSsoStep ? (
+              <>
+                <p className={css.title}>Single Sign On</p>
+                <p className={css.description}>
+                  Please proceed with the authentication in the newly opened
+                  window.
+                </p>
+              </>
+            ) : (
+              <>
+                <p className={css.title}>Credentials confirmation</p>
+                <p className={css.description}>
+                  {getMethodText(chosenOption!)}
+                </p>
+                <p className={css.description}>
+                  After interacting with the confirmation, please come back to
+                  this screen to proceed.
+                </p>
+              </>
+            )}
+
             {chosenOption === "otp_via_sms" && (
               <>
                 <div style={{ width: "100%", paddingBottom: "24px" }} />
@@ -229,20 +274,24 @@ export const Auth: React.FC<Props> = ({ oid }) => {
               </>
             )}
 
-            <div className={css.divider} />
-            <p className={css.verificationInfo}>
-              Confirmation not received?{" "}
-              <button
-                onClick={() => {
-                  setCanResendEmail(false);
-                  triggerLogin();
-                  setTimeout(() => setCanResendEmail(true), 10000);
-                }}
-                className={canResendEmail ? css.resendButton : css.disabled}
-              >
-                Send again.
-              </button>
-            </p>
+            {!isWaitingForSsoStep && (
+              <>
+                <div className={css.divider} />
+                <p className={css.verificationInfo}>
+                  Confirmation not received?{" "}
+                  <button
+                    onClick={() => {
+                      setCanResendEmail(false);
+                      triggerLogin();
+                      setTimeout(() => setCanResendEmail(true), 10000);
+                    }}
+                    className={canResendEmail ? css.resendButton : css.disabled}
+                  >
+                    Send again.
+                  </button>
+                </p>
+              </>
+            )}
           </>
         ) : (
           <>
@@ -299,13 +348,24 @@ export const Auth: React.FC<Props> = ({ oid }) => {
               onClick={triggerLogin}
             />
 
-            <div style={{ width: "100%", paddingTop: "16px" }} />
+            <div
+              style={{
+                width: "100%",
+                paddingTop: "8px",
+                paddingBottom: "8px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              Or
+            </div>
 
             <Button
-              label="Cancel"
+              label="Log in with Google"
               isSecondary
-              isSmall
-              onClick={() => setShowLogin(false)}
+              isGoogle
+              onClick={triggerSso}
             />
           </>
         )}

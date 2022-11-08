@@ -148,3 +148,9 @@
     font-weight: 400;
   }
 }
+
+.cancel {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}

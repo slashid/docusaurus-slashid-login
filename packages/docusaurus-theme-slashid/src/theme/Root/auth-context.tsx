@@ -18,6 +18,8 @@ import { SlashID, User } from "@slashid/slashid";
 
 export interface SlashIDProviderProps {
   oid: string;
+  oidcClientID?: string;
+  oidcProvider?: string;
   children: React.ReactNode;
 }
 
@@ -28,6 +30,7 @@ export interface ISlashIDContext {
   setShowLogin: (b: boolean) => void;
   logout: () => void;
   login: (args: any) => Promise<User | null>;
+  sso: () => Promise<User | null>;
   validateToken: (token: string) => Promise<boolean>;
 }
 
@@ -38,6 +41,7 @@ export const SlashIDContext = createContext<ISlashIDContext>({
   setShowLogin: (b) => undefined,
   logout: () => undefined,
   login: () => Promise.reject("NYI"),
+  sso: () => Promise.reject("NYI"),
   validateToken: (t) => Promise.resolve(false),
 });
 SlashIDContext.displayName = "SlashIDContext";
@@ -47,6 +51,8 @@ export const STORAGE_IDENTIFIER_KEY = "USER_IDENTIFIER";
 
 export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
   oid,
+  oidcClientID,
+  oidcProvider,
   children,
 }) => {
   const [showLogin, setShowLogin] = useState(false);
@@ -96,6 +102,26 @@ export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
     },
     [sid, isBrowser, oid, storeUser]
   );
+
+  const sso = useCallback(async () => {
+    if (isBrowser && sid && oidcClientID && oidcProvider) {
+      // @ts-expect-error TODO identifier should be nullable
+      const user = await sid.id(oid, null, {
+        method: "oidc",
+        options: {
+          client_id: oidcClientID,
+          provider: oidcProvider,
+          ux_mode: "popup",
+        },
+      });
+
+      storeUser(user);
+      setShowLogin(false);
+      return user;
+    } else {
+      return null;
+    }
+  }, [isBrowser, oid, oidcClientID, oidcProvider, sid, storeUser]);
 
   const validateToken = useCallback(
     async (token: string): Promise<boolean> => {
@@ -163,9 +189,10 @@ export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
       setShowLogin,
       logout,
       login,
+      sso,
       validateToken,
     }),
-    [sid, user, showLogin, logout, login, validateToken]
+    [sid, user, showLogin, logout, sso, login, validateToken]
   );
 
   return (
