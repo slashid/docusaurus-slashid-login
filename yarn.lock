@@ -1113,7 +1113,7 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@docusaurus/core@2.1.0", "@docusaurus/core@^2.1.0":
+"@docusaurus/core@2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@docusaurus/core/-/core-2.1.0.tgz#4aedc306f4c4cd2e0491b641bf78941d4b480ab6"
   integrity sha512-/ZJ6xmm+VB9Izbn0/s6h6289cbPy2k4iYFwWDhjiLsVqwa/Y0YBBcXvStfaHccudUC3OfP+26hMk7UCjc50J6Q==
@@ -1208,7 +1208,7 @@
     chalk "^4.1.2"
     tslib "^2.4.0"
 
-"@docusaurus/mdx-loader@2.1.0", "@docusaurus/mdx-loader@^2.1.0":
+"@docusaurus/mdx-loader@2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@docusaurus/mdx-loader/-/mdx-loader-2.1.0.tgz#3fca9576cc73a22f8e7d9941985590b9e47a8526"
   integrity sha512-i97hi7hbQjsD3/8OSFhLy7dbKGH8ryjEzOfyhQIn2CFBYOY3ko0vMVEf3IY9nD3Ld7amYzsZ8153RPkcnXA+Lg==
@@ -1231,7 +1231,7 @@
     url-loader "^4.1.1"
     webpack "^5.73.0"
 
-"@docusaurus/module-type-aliases@2.1.0", "@docusaurus/module-type-aliases@^2.1.0":
+"@docusaurus/module-type-aliases@2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@docusaurus/module-type-aliases/-/module-type-aliases-2.1.0.tgz#322f8fd5b436af2154c0dddfa173435730e66261"
   integrity sha512-Z8WZaK5cis3xEtyfOT817u9xgGUauT0PuuVo85ysnFRX8n7qLN1lTPCkC+aCmFm/UcV8h/W5T4NtIsst94UntQ==
@@ -1311,7 +1311,7 @@
     "@types/react" "*"
     prop-types "^15.6.2"
 
-"@docusaurus/theme-common@^2.1.0":
+"@docusaurus/theme-common@2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@docusaurus/theme-common/-/theme-common-2.1.0.tgz#dff4d5d1e29efc06125dc06f7b259f689bb3f24d"
   integrity sha512-vT1otpVPbKux90YpZUnvknsn5zvpLf+AW1W0EDcpE9up4cDrPqfsh0QoxGHFJnobE2/qftsBFC19BneN4BH8Ag==
@@ -1331,7 +1331,7 @@
     tslib "^2.4.0"
     utility-types "^3.10.0"
 
-"@docusaurus/types@2.1.0", "@docusaurus/types@^2.1.0":
+"@docusaurus/types@2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@docusaurus/types/-/types-2.1.0.tgz#01e13cd9adb268fffe87b49eb90302d5dc3edd6b"
   integrity sha512-BS1ebpJZnGG6esKqsjtEC9U9qSaPylPwlO7cQ1GaIE7J/kMZI3FITnNn0otXXu7c7ZTqhb6+8dOrG6fZn6fqzQ==
@@ -1352,7 +1352,7 @@
   dependencies:
     tslib "^2.4.0"
 
-"@docusaurus/utils-validation@2.1.0", "@docusaurus/utils-validation@^2.1.0":
+"@docusaurus/utils-validation@2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@docusaurus/utils-validation/-/utils-validation-2.1.0.tgz#c8cf1d8454d924d9a564fefa86436268f43308e3"
   integrity sha512-AMJzWYKL3b7FLltKtDXNLO9Y649V2BXvrnRdnW2AA+PpBnYV78zKLSCz135cuWwRj1ajNtP4onbXdlnyvCijGQ==
@@ -1363,7 +1363,7 @@
     js-yaml "^4.1.0"
     tslib "^2.4.0"
 
-"@docusaurus/utils@2.1.0", "@docusaurus/utils@^2.1.0":
+"@docusaurus/utils@2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@docusaurus/utils/-/utils-2.1.0.tgz#b77b45b22e61eb6c2dcad8a7e96f6db0409b655f"
   integrity sha512-fPvrfmAuC54n8MjZuG4IysaMdmvN5A/qr7iFLbSGSyDrsbP4fnui6KdZZIa/YOLIPLec8vjZ8RIITJqF18mx4A==
@@ -3064,6 +3064,11 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@slashid/react@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@slashid/react/-/react-0.0.6.tgz#e1ee35139b32902c823b103e4acd468abc8ce7ba"
+  integrity sha512-/JG+8vBUcx0HF7jPQ0FfruXvzyYqTxSkIDpY2OgHUapwH3e6VraOieSeUmHGY1uQ0OX62eDziIqKTNrneEieCg==
+
 "@slashid/slashid@^1.6.1":
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/@slashid/slashid/-/slashid-1.7.1.tgz#4d12bf71a07881e5fbd9cd15a3f5ed9f37c651e0"
@@ -3080,15 +3085,14 @@
     url "^0.11.0"
     uuid "8.3.2"
 
-"@slashid/slashid@^1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@slashid/slashid/-/slashid-1.8.0.tgz#7a9b0f0953857a3e0924eca36027fc4e94a4f5fe"
-  integrity sha512-PVZR5wMZlFwBzyIKy6sRezQf6QNKDUJzkMTl3EyoWVWM38F6PosC3fCSKBhLSlaVOdH0iNauCFMfXoUntQdMig==
+"@slashid/slashid@^1.9.2":
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/@slashid/slashid/-/slashid-1.9.2.tgz#cbcc166c9bb91e8e780d1687b7b43bb80fae61b6"
+  integrity sha512-uwqc2Z/I+yzSDdOhimkrsd/RVsB9XTYiohj6lhgxvu3qImMNhG8S/vpw+Up+2l0a5hZ441JbtPcgrQvTP0Tcgw==
   dependencies:
     "@swc/helpers" "^0.3.13"
     "@types/uuid" "8.3.4"
     docdash "^1.2.0"
-    isomorphic-fetch "^3.0.0"
     jwt-decode "^3.1.2"
     mitt "^3.0.0"
     querystring-es3 "^0.2.1"
