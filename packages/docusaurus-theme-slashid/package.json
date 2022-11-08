@@ -1,7 +1,7 @@
 {
   "name": "@slashid/docusaurus-theme-slashid",
   "description": "SlashID theme for Docusaurus.",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "license": "MIT",
   "keywords": [
     "login",
