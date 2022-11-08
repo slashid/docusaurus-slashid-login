@@ -103,8 +103,7 @@ export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
         let tempUser = new User(token);
         let ret = await tempUser.validateToken();
         if (ret.valid) {
-          const newUser = new User(token);
-          storeUser(newUser);
+          storeUser(tempUser);
           return true;
         }
         window.localStorage.removeItem(STORAGE_KEY);
