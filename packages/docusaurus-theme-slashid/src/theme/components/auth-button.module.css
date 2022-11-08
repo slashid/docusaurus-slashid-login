@@ -1,0 +1,11 @@
+.host {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.host > p {
+  margin: 0;
+  margin-right: 1rem;
+}

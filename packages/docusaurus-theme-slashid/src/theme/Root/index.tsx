@@ -8,7 +8,6 @@
 import React from "react";
 
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import useIsBrowser from "@docusaurus/useIsBrowser";
 
 import { ThemeConfig } from "../../types";
 import { Auth } from "./auth";
@@ -22,14 +21,9 @@ interface AuthCheckProps {
   children: React.ReactNode;
 }
 const AuthCheck: React.FC<AuthCheckProps> = ({ oid, children }) => {
-  const { user } = useSlashId();
-  const isBrowser = useIsBrowser();
+  const { showLogin } = useSlashId();
 
-  if (!isBrowser) {
-    return null;
-  }
-
-  return user ? <>{children}</> : <Auth oid={oid} />;
+  return showLogin ? <Auth oid={oid} /> : <>{children}</>;
 };
 
 // Default implementation, that you can customize

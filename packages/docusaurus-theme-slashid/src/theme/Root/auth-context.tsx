@@ -24,6 +24,8 @@ export interface SlashIDProviderProps {
 export interface ISlashIDContext {
   sid: SlashID | undefined;
   user: User | undefined;
+  showLogin: boolean;
+  setShowLogin: (b: boolean) => void;
   logout: () => void;
   login: (args: any) => Promise<User | null>;
   validateToken: (token: string) => Promise<boolean>;
@@ -32,6 +34,8 @@ export interface ISlashIDContext {
 export const SlashIDContext = createContext<ISlashIDContext>({
   sid: undefined,
   user: undefined,
+  showLogin: false,
+  setShowLogin: (b) => undefined,
   logout: () => undefined,
   login: () => Promise.reject("NYI"),
   validateToken: (t) => Promise.resolve(false),
@@ -45,23 +49,38 @@ export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
   oid,
   children,
 }) => {
+  const [showLogin, setShowLogin] = useState(false);
   const isBrowser = useIsBrowser();
   const [sid, setSid] = useState<SlashID | undefined>(undefined);
   const [user, setUser] = useState<User | undefined>(undefined);
 
-  const storeUser = (newUser: User) => {
-    setUser(newUser);
-    window.localStorage.setItem(STORAGE_KEY, newUser.token);
-  };
+  const storeUser = React.useCallback(
+    (newUser: User) => {
+      if (isBrowser) {
+        window.localStorage.setItem(STORAGE_KEY, newUser.token);
+        const event = new CustomEvent("slashId:login", {
+          detail: { token: newUser.token },
+        });
+        window.dispatchEvent(event);
+        setUser(newUser);
+      }
+    },
+    [isBrowser]
+  );
 
   const logout = useCallback(() => {
-    setUser(undefined);
-    window.localStorage.removeItem(STORAGE_KEY);
-  }, []);
+    if (isBrowser) {
+      setUser(undefined);
+      setShowLogin(false);
+      const event = new Event("slashId:logout");
+      window.dispatchEvent(event);
+      window.localStorage.removeItem(STORAGE_KEY);
+    }
+  }, [isBrowser]);
 
   const login = useCallback(
     async ({ factor, options }: { factor: unknown; options: unknown }) => {
-      if (sid) {
+      if (sid && isBrowser) {
         // @ts-ignore
         const user = await sid.id(oid, factor, options);
 
@@ -69,24 +88,31 @@ export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
         // @ts-ignore
         window.localStorage.setItem(STORAGE_IDENTIFIER_KEY, factor.value);
 
+        setShowLogin(false);
         return user;
       } else {
         return null;
       }
     },
-    [oid, sid]
+    [sid, isBrowser, oid, storeUser]
   );
 
-  const validateToken = useCallback(async (token: string): Promise<boolean> => {
-    let tempUser = new User(token);
-    let ret = await tempUser.validateToken();
-    if (ret.valid) {
-      const newUser = new User(token);
-      setUser(newUser);
-      return true;
-    }
-    return false;
-  }, []);
+  const validateToken = useCallback(
+    async (token: string): Promise<boolean> => {
+      if (isBrowser) {
+        let tempUser = new User(token);
+        let ret = await tempUser.validateToken();
+        if (ret.valid) {
+          storeUser(tempUser);
+          return true;
+        }
+        window.localStorage.removeItem(STORAGE_KEY);
+        return false;
+      }
+      return false;
+    },
+    [isBrowser, storeUser]
+  );
 
   useEffect(() => {
     if (isBrowser) {
@@ -96,7 +122,7 @@ export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
   }, [isBrowser]);
 
   useEffect(() => {
-    if (sid && window) {
+    if (sid && isBrowser) {
       const loginDirectIdIfPresent = async () => {
         try {
           const tempUser = await sid.getUserFromURL();
@@ -126,19 +152,20 @@ export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
       };
 
       tryImmediateLogin();
-
-      // listen for logout
-      window.addEventListener("slashId:logout", logout);
-
-      return () => window.removeEventListener("slashId:logout", logout);
     }
-
-    return () => null;
-  }, [logout, sid, validateToken]);
+  }, [isBrowser, logout, sid, storeUser, validateToken]);
 
   const contextValue = useMemo(
-    () => ({ sid, user, logout, login, validateToken }),
-    [sid, user, logout, login, validateToken]
+    () => ({
+      sid,
+      user,
+      showLogin,
+      setShowLogin,
+      logout,
+      login,
+      validateToken,
+    }),
+    [sid, user, showLogin, logout, login, validateToken]
   );
 
   return (

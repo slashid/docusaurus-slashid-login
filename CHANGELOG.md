@@ -1,3 +1,11 @@
+## 0.1.7 (Nov 8, 2022)
+
+High level enhancements
+
+- Auth can now be rendered server side
+- Login is optional
+- Added events to keep track of login state
+
 ## 0.1.6 (Oct 21, 2022)
 
 - Remove the dev label

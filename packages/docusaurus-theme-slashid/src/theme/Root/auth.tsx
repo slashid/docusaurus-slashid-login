@@ -33,7 +33,7 @@ interface Props {
 }
 
 export const Auth: React.FC<Props> = ({ oid }) => {
-  const { sid, login } = useSlashId();
+  const { sid, login, setShowLogin } = useSlashId();
   const isBrowser = useIsBrowser();
   const [inputValue, setInputValue] = React.useState("");
   const [isLoadingDropdownOptions, setIsLoadingDropdownOptions] =
@@ -77,7 +77,7 @@ export const Auth: React.FC<Props> = ({ oid }) => {
         STORAGE_IDENTIFIER_KEY
       );
       if (existingIdentifier) {
-        setInputValue(window.localStorage.getItem("USER_IDENTIFIER") as string);
+        setInputValue(existingIdentifier);
       }
 
       setIsLoadingDropdownOptions(false);
@@ -297,6 +297,15 @@ export const Auth: React.FC<Props> = ({ oid }) => {
               label="Log in"
               isDisabled={checkIfButtonShouldBeDisabled()}
               onClick={triggerLogin}
+            />
+
+            <div style={{ width: "100%", paddingTop: "16px" }} />
+
+            <Button
+              label="Cancel"
+              isSecondary
+              isSmall
+              onClick={() => setShowLogin(false)}
             />
           </>
         )}
