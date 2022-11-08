@@ -1,3 +1,9 @@
+## 0.1.9 (Nov 8, 2022)
+
+High level enhancements
+
+- SSO with Google can now be used to log in to the site
+
 ## 0.1.7 (Nov 8, 2022)
 
 High level enhancements
