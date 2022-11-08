@@ -21,9 +21,9 @@ interface AuthCheckProps {
   children: React.ReactNode;
 }
 const AuthCheck: React.FC<AuthCheckProps> = ({ oid, children }) => {
-  const { user } = useSlashId();
+  const { showLogin } = useSlashId();
 
-  return user ? <>{children}</> : <Auth oid={oid} />;
+  return showLogin ? <Auth oid={oid} /> : <>{children}</>;
 };
 
 // Default implementation, that you can customize

@@ -24,6 +24,8 @@ export interface SlashIDProviderProps {
 export interface ISlashIDContext {
   sid: SlashID | undefined;
   user: User | undefined;
+  showLogin: boolean;
+  setShowLogin: (b: boolean) => void;
   logout: () => void;
   login: (args: any) => Promise<User | null>;
   validateToken: (token: string) => Promise<boolean>;
@@ -32,6 +34,8 @@ export interface ISlashIDContext {
 export const SlashIDContext = createContext<ISlashIDContext>({
   sid: undefined,
   user: undefined,
+  showLogin: false,
+  setShowLogin: (b) => undefined,
   logout: () => undefined,
   login: () => Promise.reject("NYI"),
   validateToken: (t) => Promise.resolve(false),
@@ -45,6 +49,7 @@ export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
   oid,
   children,
 }) => {
+  const [showLogin, setShowLogin] = useState(false);
   const isBrowser = useIsBrowser();
   const [sid, setSid] = useState<SlashID | undefined>(undefined);
   const [user, setUser] = useState<User | undefined>(undefined);
@@ -56,6 +61,7 @@ export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
 
   const logout = useCallback(() => {
     setUser(undefined);
+    setShowLogin(false);
     window.localStorage.removeItem(STORAGE_KEY);
   }, []);
 
@@ -69,6 +75,7 @@ export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
         // @ts-ignore
         window.localStorage.setItem(STORAGE_IDENTIFIER_KEY, factor.value);
 
+        setShowLogin(false);
         return user;
       } else {
         return null;
@@ -137,8 +144,16 @@ export const SlashIDProvider: React.FC<SlashIDProviderProps> = ({
   }, [logout, sid, validateToken]);
 
   const contextValue = useMemo(
-    () => ({ sid, user, logout, login, validateToken }),
-    [sid, user, logout, login, validateToken]
+    () => ({
+      sid,
+      user,
+      showLogin,
+      setShowLogin,
+      logout,
+      login,
+      validateToken,
+    }),
+    [sid, user, showLogin, logout, login, validateToken]
   );
 
   return (

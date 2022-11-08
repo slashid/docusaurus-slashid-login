@@ -11,18 +11,17 @@ import { useSlashId } from "../Root/auth-context";
 import Button from "../Root/Button";
 
 export default function AuthButton() {
-  const { user, logout } = useSlashId();
+  const { user, setShowLogin, logout } = useSlashId();
 
   const handleClick = React.useCallback(async () => {
     const isLoggedIn = Boolean(user);
 
     if (isLoggedIn) {
       await logout();
-      console.log("logged out");
     } else {
-      console.log("Clicked");
+      setShowLogin(true);
     }
-  }, [logout, user]);
+  }, [logout, setShowLogin, user]);
 
   return (
     <Button
