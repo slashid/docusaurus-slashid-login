@@ -7,12 +7,29 @@
 
 import React from "react";
 
+import { useSlashId } from "../Root/auth-context";
 import Button from "../Root/Button";
 
 export default function AuthButton() {
-  const handleClick = React.useCallback(async () => {
-    console.log("Clicked auth button");
-  }, []);
+  const { user, logout } = useSlashId();
 
-  return <Button isSmall isSecondary onClick={handleClick} label={"Log in"} />;
+  const handleClick = React.useCallback(async () => {
+    const isLoggedIn = Boolean(user);
+
+    if (isLoggedIn) {
+      await logout();
+      console.log("logged out");
+    } else {
+      console.log("Clicked");
+    }
+  }, [logout, user]);
+
+  return (
+    <Button
+      isSmall
+      isSecondary
+      onClick={handleClick}
+      label={!user ? "Log in" : "Log out"}
+    />
+  );
 }

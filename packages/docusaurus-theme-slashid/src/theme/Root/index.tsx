@@ -8,7 +8,6 @@
 import React from "react";
 
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import useIsBrowser from "@docusaurus/useIsBrowser";
 
 import { ThemeConfig } from "../../types";
 import { Auth } from "./auth";
@@ -23,11 +22,6 @@ interface AuthCheckProps {
 }
 const AuthCheck: React.FC<AuthCheckProps> = ({ oid, children }) => {
   const { user } = useSlashId();
-  const isBrowser = useIsBrowser();
-
-  if (!isBrowser) {
-    return null;
-  }
 
   return user ? <>{children}</> : <Auth oid={oid} />;
 };
