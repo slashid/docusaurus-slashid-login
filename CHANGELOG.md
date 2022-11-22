@@ -1,3 +1,9 @@
+## 0.1.10 (Nov 22, 2022)
+
+High level enhancements
+
+- removed the identifier from the auth button
+
 ## 0.1.9 (Nov 8, 2022)
 
 High level enhancements
