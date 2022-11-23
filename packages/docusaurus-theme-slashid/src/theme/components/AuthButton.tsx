@@ -8,7 +8,6 @@
 import React from "react";
 
 import { useSlashId } from "../Root/auth-context";
-import Button from "../Root/Button";
 import css from "./auth-button.module.css";
 
 export default function AuthButton() {
@@ -26,12 +25,9 @@ export default function AuthButton() {
 
   return (
     <div className={css.host}>
-      <Button
-        isSmall
-        isSecondary
-        onClick={handleClick}
-        label={!user ? "Log in" : "Log out"}
-      />
+      <button className={css.button} type="button" onClick={handleClick}>
+        {!user ? "Log in" : "Log out"}
+      </button>
     </div>
   );
 }
