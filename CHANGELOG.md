@@ -1,3 +1,9 @@
+## 0.1.11 (Nov 23, 2022)
+
+High level enhancements
+
+- Log in button now has a specific style
+
 ## 0.1.10 (Nov 22, 2022)
 
 High level enhancements
