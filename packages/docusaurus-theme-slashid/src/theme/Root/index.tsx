@@ -7,6 +7,7 @@
 
 import React from "react";
 
+import { useLocation } from "@docusaurus/router";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useIsBrowser from "@docusaurus/useIsBrowser";
 
@@ -22,15 +23,23 @@ interface AuthCheckProps {
   children: React.ReactNode;
 }
 const AuthCheck: React.FC<AuthCheckProps> = ({ oid, children }) => {
-  const { showLogin } = useSlashId();
+  const { user } = useSlashId();
   const isBrowser = useIsBrowser();
+  const location = useLocation();
+
+  console.log({ location });
 
   // TODO figure out where the reference to window is
   if (!isBrowser) {
     return null;
   }
 
-  return showLogin ? <Auth oid={oid} /> : <>{children}</>;
+  // blacklist the Gate docs
+  if (!user && location.pathname.includes("/docs/gate")) {
+    return <Auth oid={oid} />;
+  }
+
+  return user ? <>{children}</> : <Auth oid={oid} />;
 };
 
 // Default implementation, that you can customize
