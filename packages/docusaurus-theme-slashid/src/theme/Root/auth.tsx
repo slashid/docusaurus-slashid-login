@@ -33,7 +33,7 @@ interface Props {
 }
 
 export const Auth: React.FC<Props> = ({ oid }) => {
-  const { sid, login, sso, setShowLogin } = useSlashId();
+  const { sid, login, sso } = useSlashId();
   const isBrowser = useIsBrowser();
   const [inputValue, setInputValue] = React.useState("");
   const [isLoadingDropdownOptions, setIsLoadingDropdownOptions] =
@@ -212,17 +212,7 @@ export const Auth: React.FC<Props> = ({ oid }) => {
               </i>
               Go back
             </button>
-          ) : (
-            <button
-              onClick={() => setShowLogin(false)}
-              className={css.goBackButton}
-            >
-              <i className={css.chevroLeft}>
-                <ChevronLeft />
-              </i>
-              Cancel
-            </button>
-          )}
+          ) : null}
         </div>
 
         {isVerificationStep || isWaitingForSsoStep ? (
