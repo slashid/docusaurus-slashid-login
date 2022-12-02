@@ -245,7 +245,7 @@ export const Auth: React.FC<Props> = ({ oid }) => {
               <>
                 <p className={css.title}>Credentials confirmation</p>
                 <p className={css.description}>
-                  {getMethodText(chosenOption!)}
+                  {getMethodText(chosenOption!, identifierType!)}
                 </p>
                 <p className={css.description}>
                   After interacting with the confirmation, please come back to
