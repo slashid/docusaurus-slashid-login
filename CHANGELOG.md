@@ -1,3 +1,14 @@
+## 0.2.0 (Mar 10, 2023)
+
+High level enhancements
+
+- added a `forceLogin` configuration option to make login required
+
+Other enhancements and bug fixes
+
+- bump package version
+- clarify instructions for webauthn
+
 ## 0.1.11 (Nov 23, 2022)
 
 High level enhancements

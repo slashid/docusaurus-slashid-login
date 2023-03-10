@@ -13,5 +13,6 @@ export interface ThemeConfig {
     orgID?: string;
     oidcClientID?: string;
     oidcProvider?: string;
+    forceLogin?: boolean;
   };
 }

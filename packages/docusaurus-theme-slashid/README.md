@@ -60,9 +60,12 @@ Add the following to `docusaurus.config.js` to start using the theme:
 
 The `docusaurus-theme-slashid` theme can be configured with the following options:
 
-| Name            | Type     | Default | Description                  |
-| --------------- | -------- | ------- | ---------------------------- |
-| `slashID.orgID` | `string` | `null`  | The SlashID organization ID. |
+| Name                   | Type      | Default | Description                  |
+| ---------------------- | --------- | ------- | ---------------------------- |
+| `slashID.orgID`        | `string`  | `null`  | The SlashID organization ID. |
+| `slashID.oidcClientID` | `string`  | `null`  | OIDC client ID.              |
+| `slashID.oidcProvider` | `string`  | `null`  | OIDC provider name.          |
+| `slashID.forceLogin`   | `boolean` | `false` | Make login required.         |
 
 ## Support
 
