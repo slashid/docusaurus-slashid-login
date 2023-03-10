@@ -37,7 +37,7 @@ const AuthCheck: React.FC<AuthCheckProps> = ({
 
   // if login is configured to be mandatory
   if (forceLogin) {
-    return user ? <Auth oid={oid} /> : <>{children}</>;
+    return user ? <>{children}</> : <Auth oid={oid} />;
   }
 
   return showLogin ? <Auth oid={oid} /> : <>{children}</>;
