@@ -19,15 +19,25 @@ import "./globals.css";
 
 interface AuthCheckProps {
   oid: string;
+  forceLogin?: boolean;
   children: React.ReactNode;
 }
-const AuthCheck: React.FC<AuthCheckProps> = ({ oid, children }) => {
-  const { showLogin } = useSlashId();
+const AuthCheck: React.FC<AuthCheckProps> = ({
+  oid,
+  forceLogin = false,
+  children,
+}) => {
+  const { showLogin, user } = useSlashId();
   const isBrowser = useIsBrowser();
 
   // TODO figure out where the reference to window is
   if (!isBrowser) {
     return null;
+  }
+
+  // if login is configured to be mandatory
+  if (forceLogin) {
+    return user ? <Auth oid={oid} /> : <>{children}</>;
   }
 
   return showLogin ? <Auth oid={oid} /> : <>{children}</>;
@@ -45,7 +55,9 @@ export default function Root({ children }: any) {
       oidcClientID={options?.oidcClientID}
       oidcProvider={options?.oidcProvider}
     >
-      <AuthCheck oid={options?.orgID!}>{children}</AuthCheck>
+      <AuthCheck forceLogin={options?.forceLogin} oid={options?.orgID!}>
+        {children}
+      </AuthCheck>
     </SlashIDProvider>
   );
 }
