@@ -1,7 +1,7 @@
 {
   "name": "@slashid/docusaurus-theme-slashid",
   "description": "SlashID theme for Docusaurus.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   "keywords": [
     "login",
@@ -57,8 +57,8 @@
     "@mdx-js/react": "^1.6.21",
     "@radix-ui/react-dropdown-menu": "^1.0.0",
     "@reduxjs/toolkit": "^1.7.1",
-    "@slashid/slashid": "^3.9.0",
     "@slashid/react": "^1.7.0",
+    "@slashid/slashid": "^3.9.0",
     "buffer": "^6.0.3",
     "clsx": "^1.1.1",
     "crypto-js": "^4.1.1",

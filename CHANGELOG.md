@@ -1,3 +1,9 @@
+## 0.2.1 (Jul 20, 2023)
+
+High level enhancements
+
+- replaced the bespoke login form with the standard `@slashid/react` login form
+
 ## 0.2.0 (Mar 10, 2023)
 
 High level enhancements
