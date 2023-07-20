@@ -5,29 +5,34 @@
  * LICENSE file in the root directory of this source tree.
  * ========================================================================== */
 
-import React from "react";
+import React, { useContext } from "react";
 
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useIsBrowser from "@docusaurus/useIsBrowser";
+import { SlashIDProvider, useSlashID } from "@slashid/react";
+import { OAuthProvider } from "@slashid/slashid";
 
 import { ThemeConfig } from "../../types";
-import { Auth } from "./auth";
-import { SlashIDProvider, useSlashId } from "./auth-context";
 
 import "./reset.css";
 import "./globals.css";
+import { AuthContext, AuthProvider } from "./auth-context";
+import { SlashID } from "./slashid";
 
 interface AuthCheckProps {
-  oid: string;
   forceLogin?: boolean;
+  oidcClientID?: string;
+  oidcProvider?: OAuthProvider;
   children: React.ReactNode;
 }
 const AuthCheck: React.FC<AuthCheckProps> = ({
-  oid,
   forceLogin = false,
+  oidcClientID,
+  oidcProvider,
   children,
 }) => {
-  const { showLogin, user } = useSlashId();
+  const { user } = useSlashID();
+  const { showLogin } = useContext(AuthContext);
   const isBrowser = useIsBrowser();
 
   // TODO figure out where the reference to window is
@@ -37,10 +42,18 @@ const AuthCheck: React.FC<AuthCheckProps> = ({
 
   // if login is configured to be mandatory
   if (forceLogin) {
-    return user ? <>{children}</> : <Auth oid={oid} />;
+    return user ? (
+      <>{children}</>
+    ) : (
+      <SlashID oidcClientID={oidcClientID} oidcProvider={oidcProvider} />
+    );
   }
 
-  return showLogin ? <Auth oid={oid} /> : <>{children}</>;
+  return showLogin ? (
+    <SlashID oidcClientID={oidcClientID} oidcProvider={oidcProvider} />
+  ) : (
+    <>{children}</>
+  );
 };
 
 // Default implementation, that you can customize
@@ -50,14 +63,16 @@ export default function Root({ children }: any) {
   const options = themeConfig.slashID;
 
   return (
-    <SlashIDProvider
-      oid={options?.orgID!}
-      oidcClientID={options?.oidcClientID}
-      oidcProvider={options?.oidcProvider}
-    >
-      <AuthCheck forceLogin={options?.forceLogin} oid={options?.orgID!}>
-        {children}
-      </AuthCheck>
+    <SlashIDProvider oid={options?.orgID!}>
+      <AuthProvider>
+        <AuthCheck
+          forceLogin={options?.forceLogin}
+          oidcClientID={options?.oidcClientID}
+          oidcProvider={options?.oidcProvider}
+        >
+          {children}
+        </AuthCheck>
+      </AuthProvider>
     </SlashIDProvider>
   );
 }

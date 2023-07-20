@@ -7,21 +7,27 @@
 
 import React from "react";
 
-import { useSlashId } from "../Root/auth-context";
+import { useSlashID } from "@slashid/react";
+
+import { AuthContext } from "../Root/auth-context";
+import { STORAGE_KEY } from "../Root/slashid";
 import css from "./auth-button.module.css";
 
 export default function AuthButton() {
-  const { user, setShowLogin, logout } = useSlashId();
+  const { user, logOut } = useSlashID();
+  const { setShowLogin } = React.useContext(AuthContext);
 
   const handleClick = React.useCallback(async () => {
     const isLoggedIn = Boolean(user);
 
     if (isLoggedIn) {
-      await logout();
+      await logOut();
+      window.localStorage.removeItem(STORAGE_KEY);
+      setShowLogin(false);
     } else {
       setShowLogin(true);
     }
-  }, [logout, setShowLogin, user]);
+  }, [logOut, setShowLogin, user]);
 
   return (
     <div className={css.host}>
