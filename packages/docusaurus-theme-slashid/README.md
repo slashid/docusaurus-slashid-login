@@ -31,7 +31,7 @@ Key Features:
 Theme:
 
 ```bash
-yarn add @slashid/docusaurus-theme-slashid
+yarn add @slashid/react @slashid/docusaurus-theme-slashid
 ```
 
 ## Configuring `docusaurus.config.js`
@@ -54,6 +54,22 @@ Add the following to `docusaurus.config.js` to start using the theme:
 
   themes: ["@slashid/docusaurus-theme-slashid"],
 }
+```
+
+Also please remember to include the login form styles:
+
+```js
+// under presets
+
+{
+    theme: {
+        customCss: [
+            require.resolve("./src/css/custom.scss"), // existing custom css
+            require.resolve("@slashid/react/style.css"), // add this line
+        ],
+    }
+}
+
 ```
 
 ## Theme Configuration Options

@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  * ========================================================================== */
 
+import { OAuthProvider } from "@slashid/slashid";
+
 //import type { FrontMatterTag } from "@docusaurus/utils";
 //import type { JSONSchema4, JSONSchema6, JSONSchema7 } from "json-schema";
 
@@ -12,7 +14,7 @@ export interface ThemeConfig {
   slashID?: {
     orgID?: string;
     oidcClientID?: string;
-    oidcProvider?: string;
+    oidcProvider?: OAuthProvider;
     forceLogin?: boolean;
   };
 }

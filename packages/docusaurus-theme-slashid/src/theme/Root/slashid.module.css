@@ -1,0 +1,19 @@
+.slashid {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+
+.form {
+  width: 100%;
+  max-width: 465px;
+  --sid-font-family: Inter, sans-serif;
+}
+
+@media (max-width: 768px) {
+  .form {
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+}
