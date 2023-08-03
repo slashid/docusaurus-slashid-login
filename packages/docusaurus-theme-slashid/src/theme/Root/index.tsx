@@ -63,7 +63,11 @@ export default function Root({ children }: any) {
   const options = themeConfig.slashID;
 
   return (
-    <SlashIDProvider oid={options?.orgID!}>
+    <SlashIDProvider
+      oid={options?.orgID!}
+      baseApiUrl={options?.baseURL}
+      sdkUrl={options?.sdkURL}
+    >
       <AuthProvider>
         <AuthCheck
           forceLogin={options?.forceLogin}

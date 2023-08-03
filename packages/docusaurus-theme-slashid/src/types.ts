@@ -16,5 +16,7 @@ export interface ThemeConfig {
     oidcClientID?: string;
     oidcProvider?: OAuthProvider;
     forceLogin?: boolean;
+    baseURL?: string;
+    sdkURL?: string;
   };
 }

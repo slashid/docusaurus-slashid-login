@@ -31,7 +31,10 @@ Key Features:
 Theme:
 
 ```bash
-yarn add @slashid/react @slashid/docusaurus-theme-slashid
+# npm
+npm install @slashid/slashid @slashid/react @slashid/docusaurus-theme-slashid
+# yarn
+yarn add @slashid/slashid @slashid/react @slashid/docusaurus-theme-slashid
 ```
 
 ## Configuring `docusaurus.config.js`
@@ -46,13 +49,19 @@ Add the following to `docusaurus.config.js` to start using the theme:
 
    themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
+     ({
       ...
       slashID: {
-        orgID: "your slash id org id"
+        orgID: "your slash id org id",
+        oidcClientID: "optional OIDC client ID",
+        oidcProvider: "optional OIDC provider name",
+        forceLogin: "boolean flag to determine if login is required",
+        baseURL: "optional base API URL for the SDK, defaults to the sandbox environment",
+        sdkURL: "optional base SDK page URL for the SDK, defaults to the sandbox environment",
       },
 
-  themes: ["@slashid/docusaurus-theme-slashid"],
+    themes: ["@slashid/docusaurus-theme-slashid"],
+  }
 }
 ```
 
@@ -76,12 +85,14 @@ Also please remember to include the login form styles:
 
 The `docusaurus-theme-slashid` theme can be configured with the following options:
 
-| Name                   | Type      | Default | Description                  |
-| ---------------------- | --------- | ------- | ---------------------------- |
-| `slashID.orgID`        | `string`  | `null`  | The SlashID organization ID. |
-| `slashID.oidcClientID` | `string`  | `null`  | OIDC client ID.              |
-| `slashID.oidcProvider` | `string`  | `null`  | OIDC provider name.          |
-| `slashID.forceLogin`   | `boolean` | `false` | Make login required.         |
+| Name                   | Type      | Default | Description                                                         |
+| ---------------------- | --------- | ------- | ------------------------------------------------------------------- |
+| `slashID.orgID`        | `string`  | `null`  | The SlashID organization ID.                                        |
+| `slashID.oidcClientID` | `string`  | `null`  | OIDC client ID.                                                     |
+| `slashID.oidcProvider` | `string`  | `null`  | OIDC provider name.                                                 |
+| `slashID.forceLogin`   | `boolean` | `false` | Make login required.                                                |
+| `slashID.baseURL`      | `boolean` | `false` | Base API URL for the SDK, defaults to the sandbox environment.      |
+| `slashID.sdkURL`       | `boolean` | `false` | Base SDK page URL for the SDK, defaults to the sandbox environment. |
 
 ## Support
 
