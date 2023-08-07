@@ -65,8 +65,8 @@ export default function Root({ children }: any) {
   return (
     <SlashIDProvider
       oid={options?.orgID!}
-      baseApiUrl={options?.baseURL}
-      sdkUrl={options?.sdkURL}
+      baseApiUrl={options?.baseURL || "https://api.slashid.com"}
+      sdkUrl={options?.sdkURL || "https://cdn.slashid.com/sdk.html"}
     >
       <AuthProvider>
         <AuthCheck
