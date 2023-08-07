@@ -1,3 +1,9 @@
+## 0.2.3 (Aug 7, 2023)
+
+High level enhancements
+
+- switched to the `production` as the default environment
+
 ## 0.2.1 (Jul 20, 2023)
 
 High level enhancements
