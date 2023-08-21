@@ -51,15 +51,26 @@ const config = {
             "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+          customCss: [
+            require.resolve("./src/css/custom.css"), // existing custom css
+            require.resolve("@slashid/react/style.css"), // add this line
+          ],
         },
       }),
     ],
   ],
 
+  themes: ["@slashid/docusaurus-theme-slashid"],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      slashID: {
+        orgID: "a6b69fd8-cd7a-f516-2705-d531d709acf8",
+        forceLogin: false,
+        baseURL: "https://api.sandbox.slashid.com",
+        sdkURL: "https://cdn.sandbox.slashid.com/sdk.html",
+      },
       navbar: {
         title: "My Site",
         logo: {
@@ -78,6 +89,11 @@ const config = {
             href: "https://github.com/facebook/docusaurus",
             label: "GitHub",
             position: "right",
+          },
+          {
+            type: "custom-AuthButton",
+            position: "right",
+            className: "button button--secondary button--lg",
           },
         ],
       },

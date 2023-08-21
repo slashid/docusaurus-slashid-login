@@ -1,9 +1,0 @@
-{
-  "version": "v1",
-  "packages": {
-    "@slashid/docusaurus-theme-slashid": {
-      "signature": "95733ad0c6fe9ae3d78455291089f0bd",
-      "file": true
-    }
-  }
-}
