@@ -7,7 +7,7 @@
 
 import React from "react";
 
-import DocItem from "@theme-original/DocItem";
+import DocItem from "@theme-init/DocItem";
 
 export default function DocItemWrapper(props) {
   const { content } = props;
