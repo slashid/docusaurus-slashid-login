@@ -8,6 +8,7 @@
     ]
   },
   "scripts": {
+    "lerna": "lerna",
     "prepare": "husky install",
     "watch": "lerna run watch --parallel",
     "build": "yarn build-packages",

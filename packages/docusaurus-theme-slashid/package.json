@@ -28,7 +28,8 @@
     "watch": "concurrently --names \"lib,lib-next,tsc\" --kill-others \"yarn babel:lib --watch\" \"yarn babel:lib-next --watch\" \"yarn tsc --watch\"",
     "babel:lib": "cross-env BABEL_ENV=lib babel src -d lib --extensions \".tsx,.ts\" --ignore \"**/*.d.ts\" --copy-files",
     "babel:lib-next": "cross-env BABEL_ENV=lib-next babel src -d lib-next --extensions \".tsx,.ts\" --ignore \"**/*.d.ts\" --copy-files",
-    "format:lib-next": "prettier --config ../../.prettierrc.json --write \"lib-next/**/*.{js,ts,jsx,tsc}\""
+    "format:lib-next": "prettier --config ../../.prettierrc.json --write \"lib-next/**/*.{js,ts,jsx,tsc}\"",
+    "publish:local": "yarn build && yarn yalc publish"
   },
   "devDependencies": {
     "@docusaurus/core": "^2.1.0",
@@ -76,7 +77,8 @@
     "react-redux": "^7.2.0",
     "redux-devtools-extension": "^2.13.8",
     "webpack": "^5.61.0",
-    "xml-formatter": "^2.6.1"
+    "xml-formatter": "^2.6.1",
+    "yalc": "^1.0.0-pre.53"
   },
   "peerDependencies": {
     "react": "^16.8.4 || ^17.0.2",
