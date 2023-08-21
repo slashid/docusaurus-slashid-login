@@ -3905,41 +3905,10 @@
     compress.js "^1.2.2"
     country-list-with-dial-code-and-flag "^3.0.2"
 
-"@slashid/react@^1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@slashid/react/-/react-1.7.0.tgz#8664f517c61285a275f247ced1815d295e05401a"
-  integrity sha512-2lZn4HLEaz5r3wgNUdQqvHpXcS/MruybT0HXeMHSweB+Xhfh0gnqI0n5YrHhTPRO2rUpWIoPgzpeY4rpVoFGcg==
-  dependencies:
-    "@radix-ui/react-select" "^1.1.2"
-    "@radix-ui/react-tabs" "^1.0.1"
-    "@vanilla-extract/css" "^1.9.2"
-    "@vanilla-extract/dynamic" "^2.0.3"
-    "@vanilla-extract/recipes" "^0.3.0"
-    "@vanilla-extract/sprinkles" "^1.5.1"
-    compress.js "^1.2.2"
-    country-list-with-dial-code-and-flag "^3.0.2"
-
 "@slashid/slashid@^3.12.0":
   version "3.12.0"
   resolved "https://registry.yarnpkg.com/@slashid/slashid/-/slashid-3.12.0.tgz#9b8fe2e0900eedaa1c375c840550aa866818ec9f"
   integrity sha512-v5WfPZs7VXum142e4iM1lpD1L8HEb1E9XWXF/XRKy5t1PSKchiikKg8XvXddM/TDxYhK92pbEnhR0eFMwWN6tQ==
-  dependencies:
-    "@changesets/cli" "^2.26.2"
-    "@types/uuid" "8.3.4"
-    changeset "^0.2.6"
-    docdash "^1.2.0"
-    jwt-decode "^3.1.2"
-    mitt "^3.0.0"
-    qrcode "^1.5.1"
-    querystring-es3 "^0.2.1"
-    regenerator-runtime "^0.13.9"
-    url "^0.11.0"
-    uuid "8.3.2"
-
-"@slashid/slashid@^3.9.0":
-  version "3.9.0"
-  resolved "https://registry.yarnpkg.com/@slashid/slashid/-/slashid-3.9.0.tgz#cba4623eeb21811ce8171e05feed8fc391445959"
-  integrity sha512-ih/QG7tiVJC8y7gdAh7o5orLLIjOmAN+yf8Yr7vuhflbrxZvZlNGzGQnWoOrVlxVNG7r2I+p4pVcTD54KVdFdQ==
   dependencies:
     "@changesets/cli" "^2.26.2"
     "@types/uuid" "8.3.4"

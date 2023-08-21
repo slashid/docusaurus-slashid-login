@@ -9,7 +9,7 @@ import React, { useContext } from "react";
 
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useIsBrowser from "@docusaurus/useIsBrowser";
-import { SlashIDProvider, useSlashID } from "@slashid/react";
+import { SlashIDProvider, SlashIDLoaded, useSlashID } from "@slashid/react";
 import { OAuthProvider } from "@slashid/slashid";
 
 import { ThemeConfig } from "../../types";
@@ -67,15 +67,18 @@ export default function Root({ children }: any) {
       oid={options?.orgID!}
       baseApiUrl={options?.baseURL || "https://api.slashid.com"}
       sdkUrl={options?.sdkURL || "https://cdn.slashid.com/sdk.html"}
+      tokenStorage="localStorage"
     >
       <AuthProvider>
-        <AuthCheck
-          forceLogin={options?.forceLogin}
-          oidcClientID={options?.oidcClientID}
-          oidcProvider={options?.oidcProvider}
-        >
-          {children}
-        </AuthCheck>
+        <SlashIDLoaded>
+          <AuthCheck
+            forceLogin={options?.forceLogin}
+            oidcClientID={options?.oidcClientID}
+            oidcProvider={options?.oidcProvider}
+          >
+            {children}
+          </AuthCheck>
+        </SlashIDLoaded>
       </AuthProvider>
     </SlashIDProvider>
   );
