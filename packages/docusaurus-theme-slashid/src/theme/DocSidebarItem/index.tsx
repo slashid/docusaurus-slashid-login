@@ -57,7 +57,7 @@ export default function DocSidebarItemWrapper(props: Props) {
       return null;
     }
 
-    if (!slashIDProps) {
+    if (!slashIDProps || !slashIDProps.auth) {
       return <DocSidebarItem {...props} />;
     }
 
