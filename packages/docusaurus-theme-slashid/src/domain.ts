@@ -7,6 +7,7 @@
 
 import type {
   PropSidebarItem,
+  PropSidebarItemHtml,
   PropSidebarItemCategory,
 } from "@docusaurus/plugin-content-docs";
 import type { User } from "@slashid/slashid";
@@ -34,6 +35,39 @@ export type SlashIDProps = {
   groups?: string[];
 };
 
+export function shouldPathRender(
+  path: string | undefined,
+  privatePaths: PrivatePath[] | undefined,
+  user: User | undefined
+) {
+  if (!privatePaths || !path) return true;
+
+  const matchingPrivatePaths = privatePaths.filter((privatePath) => {
+    let matches = false;
+    if (typeof privatePath.path === "string") {
+      matches = path.includes(privatePath.path);
+    } else if (privatePath.path instanceof RegExp) {
+      matches = privatePath.path.test(path);
+    }
+
+    if (!matches) return false;
+
+    if (!user) return true;
+
+    if (privatePath.groups) {
+      const userGroups = user.getGroups();
+      return !privatePath.groups.every((group: string) =>
+        userGroups.includes(group)
+      );
+    }
+
+    // invalid config - should render
+    return false;
+  });
+
+  return matchingPrivatePaths.length === 0;
+}
+
 /**
  * Tests if the given item should be rendered based on the user state and the front matter config.
  * @param slashIDProps set by the front matter on the relevant page
@@ -44,6 +78,8 @@ export function shouldItemRender(
   slashIDProps: SlashIDProps | undefined,
   user: User | undefined
 ) {
+  // paths take precedence
+
   if (!slashIDProps || !slashIDProps.auth) {
     return true;
   }
@@ -68,6 +104,12 @@ export function isCategory(
   return item.hasOwnProperty("items") && item.type === "category";
 }
 
+export function isHtmlSidebarItem(
+  item: PropSidebarItem
+): item is PropSidebarItemHtml {
+  return item.type === "html";
+}
+
 export function shouldNoItemsRender(
   items: PropSidebarItem[],
   user: User | undefined,
@@ -78,6 +120,9 @@ export function shouldNoItemsRender(
       if (isCategory(item)) {
         return shouldNoItemsRender(item.items, user, getSlashIDProps);
       } else {
+        // custom items should always be rendered as they might have custom rules
+        if (isHtmlSidebarItem(item)) return true;
+
         return shouldItemRender(getSlashIDProps(item), user);
       }
     }).length === 0

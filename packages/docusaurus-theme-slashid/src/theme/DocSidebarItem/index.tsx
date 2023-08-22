@@ -11,7 +11,14 @@ import type { PropSidebarItem } from "@docusaurus/plugin-content-docs";
 import { useSlashID, Groups } from "@slashid/react";
 import DocSidebarItem from "@theme-init/DocSidebarItem";
 
-import { SlashIDProps, isCategory, shouldNoItemsRender } from "../../domain";
+import {
+  SlashIDProps,
+  isCategory,
+  isHtmlSidebarItem,
+  shouldNoItemsRender,
+  shouldPathRender,
+} from "../../domain";
+import { useSlashIDConfig } from "../hooks/useSlashIDConfig";
 
 function getSlashIDProps(item: PropSidebarItem): SlashIDProps | undefined {
   const props = item?.customProps?.slashid;
@@ -28,8 +35,18 @@ type Props = {
 export default function DocSidebarItemWrapper(props: Props) {
   const { user } = useSlashID();
   const slashIDProps = getSlashIDProps(props.item);
+  const config = useSlashIDConfig();
 
   const Component = useMemo(() => {
+    // path takes precedence
+    if (
+      !isHtmlSidebarItem(props.item) &&
+      !shouldPathRender(props.item.href, config.privatePaths, user)
+    ) {
+      console.log("Rendering null because of path! - DocSidebarItemWrapper");
+      return null;
+    }
+
     if (
       isCategory(props.item) &&
       shouldNoItemsRender(props.item.items, user, getSlashIDProps)
@@ -58,7 +75,7 @@ export default function DocSidebarItemWrapper(props: Props) {
     }
 
     return null;
-  }, [props, slashIDProps, user]);
+  }, [config.privatePaths, props, slashIDProps, user]);
 
   return Component;
 }

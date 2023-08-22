@@ -12,7 +12,7 @@ import { Redirect } from "@docusaurus/router";
 import { useSlashID } from "@slashid/react";
 import DocItem from "@theme-init/DocItem";
 
-import { SlashIDProps, shouldItemRender } from "../../domain";
+import { SlashIDProps, shouldItemRender, shouldPathRender } from "../../domain";
 import { useSlashIDConfig } from "../hooks/useSlashIDConfig";
 
 function getSlashIDProps(docItemProps: Props): SlashIDProps | undefined {
@@ -24,7 +24,15 @@ function getSlashIDProps(docItemProps: Props): SlashIDProps | undefined {
   return slashIDProps as SlashIDProps;
 }
 
-type Props = {
+export type DocumentRoute = {
+  readonly component: () => JSX.Element;
+  readonly exact: boolean;
+  readonly path: string;
+  readonly sidebar?: string;
+};
+
+export type Props = {
+  route: DocumentRoute;
   content: PropDocContent;
 };
 
@@ -33,9 +41,9 @@ export default function DocItemWrapper(props: Props) {
   const config = useSlashIDConfig();
   const redirectTo = config.privateRedirectPath || "/";
 
-  const p = getSlashIDProps(props);
-  if (p) {
-    console.log("DocItemWrapper", { p });
+  if (!shouldPathRender(props.route.path, config.privatePaths, user)) {
+    console.log("Redirecting because of path!");
+    return <Redirect to={redirectTo} />;
   }
 
   if (!shouldItemRender(getSlashIDProps(props), user)) {
