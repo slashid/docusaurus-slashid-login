@@ -7,16 +7,19 @@
 
 import { OAuthProvider } from "@slashid/slashid";
 
-//import type { FrontMatterTag } from "@docusaurus/utils";
-//import type { JSONSchema4, JSONSchema6, JSONSchema7 } from "json-schema";
-
+export interface PrivatePath {
+  path: string | RegExp;
+  groups?: string[];
+}
 export interface ThemeConfig {
   slashID?: {
-    orgID?: string;
+    orgID: string;
     oidcClientID?: string;
     oidcProvider?: OAuthProvider;
     forceLogin?: boolean;
     baseURL?: string;
     sdkURL?: string;
+    privatePaths?: PrivatePath[];
+    privateRedirectPath?: string;
   };
 }

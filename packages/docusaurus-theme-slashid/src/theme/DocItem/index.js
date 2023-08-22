@@ -7,10 +7,11 @@
 
 import React from "react";
 
-import useBaseUrl from "@docusaurus/useBaseUrl";
+import { Redirect } from "@docusaurus/router";
 import { useSlashID } from "@slashid/react";
 import DocItem from "@theme-init/DocItem";
-import { Redirect } from "@docusaurus/router";
+
+import { useSlashIDConfig } from "../hooks/useSlashIDConfig";
 
 function getSlashIDProps(props) {
   if (
@@ -47,13 +48,12 @@ function shouldItemRender(item, user) {
 }
 
 export default function DocItemWrapper(props) {
-  const { content } = props;
-  const { frontMatter } = content;
   const { user } = useSlashID();
-  const baseUrl = useBaseUrl();
+  const config = useSlashIDConfig();
+  const redirectTo = config.privatePathRedirect || "/";
 
   if (!shouldItemRender(props, user)) {
-    return <Redirect to={"/"} />;
+    return <Redirect to={redirectTo} />;
   }
 
   return <DocItem {...props} />;
