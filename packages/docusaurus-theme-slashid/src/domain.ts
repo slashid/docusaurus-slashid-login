@@ -5,6 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  * ========================================================================== */
 
+import type {
+  PropSidebarItem,
+  PropSidebarItemCategory,
+} from "@docusaurus/plugin-content-docs";
 import type { User } from "@slashid/slashid";
 import { OAuthProvider } from "@slashid/slashid";
 
@@ -56,4 +60,26 @@ export function shouldItemRender(
   }
 
   return true;
+}
+
+export function isCategory(
+  item: PropSidebarItem
+): item is PropSidebarItemCategory {
+  return item.hasOwnProperty("items") && item.type === "category";
+}
+
+export function shouldNoItemsRender(
+  items: PropSidebarItem[],
+  user: User | undefined,
+  getSlashIDProps: (item: PropSidebarItem) => SlashIDProps | undefined
+): boolean {
+  return (
+    items.filter((item) => {
+      if (isCategory(item)) {
+        return shouldNoItemsRender(item.items, user, getSlashIDProps);
+      } else {
+        return shouldItemRender(getSlashIDProps(item), user);
+      }
+    }).length === 0
+  );
 }

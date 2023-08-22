@@ -7,34 +7,11 @@
 
 import React, { useMemo } from "react";
 
-import type {
-  PropSidebarItem,
-  PropSidebarItemCategory,
-} from "@docusaurus/plugin-content-docs";
+import type { PropSidebarItem } from "@docusaurus/plugin-content-docs";
 import { useSlashID, Groups } from "@slashid/react";
-import { User } from "@slashid/slashid";
 import DocSidebarItem from "@theme-init/DocSidebarItem";
 
-import { SlashIDProps, shouldItemRender } from "../../domain";
-
-function isCategory(item: PropSidebarItem): item is PropSidebarItemCategory {
-  return item.hasOwnProperty("items") && item.type === "category";
-}
-
-function shouldNoItemsRender(
-  items: PropSidebarItem[],
-  user: User | undefined
-): boolean {
-  return (
-    items.filter((item) => {
-      if (isCategory(item)) {
-        return shouldNoItemsRender(item.items, user);
-      } else {
-        return shouldItemRender(getSlashIDProps(item), user);
-      }
-    }).length === 0
-  );
-}
+import { SlashIDProps, isCategory, shouldNoItemsRender } from "../../domain";
 
 function getSlashIDProps(item: PropSidebarItem): SlashIDProps | undefined {
   const props = item?.customProps?.slashid;
@@ -53,7 +30,10 @@ export default function DocSidebarItemWrapper(props: Props) {
   const slashIDProps = getSlashIDProps(props.item);
 
   const Component = useMemo(() => {
-    if (isCategory(props.item) && shouldNoItemsRender(props.item.items, user)) {
+    if (
+      isCategory(props.item) &&
+      shouldNoItemsRender(props.item.items, user, getSlashIDProps)
+    ) {
       return null;
     }
 
