@@ -7,9 +7,9 @@
 
 module.exports = {
   preset: "ts-jest",
-  testEnvironment: "node",
-  roots: [
-    "<rootDir>/packages/docusaurus-plugin-openapi-docs/src",
-    "<rootDir>/packages/docusaurus-theme-slashid/src",
-  ],
+  testEnvironment: "jsdom",
+  roots: ["<rootDir>/packages/docusaurus-theme-slashid/src"],
+  modulePaths: ["<rootDir>/src", "<rootDir>/node_modules"],
+  moduleDirectories: ["node_modules"],
+  transformIgnorePatterns: ["^.+\\.js$"],
 };
