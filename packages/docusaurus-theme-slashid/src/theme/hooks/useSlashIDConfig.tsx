@@ -12,7 +12,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { ThemeConfig } from "../../domain";
 
 const DEFAULT_CONFIG = {
-  orgId: "",
+  orgID: "",
   forceLogin: false,
   baseURL: "https://api.slashid.com",
   sdkURL: "https://cdn.slashid.com/sdk.html",
