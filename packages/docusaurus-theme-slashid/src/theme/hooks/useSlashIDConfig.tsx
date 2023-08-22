@@ -9,7 +9,7 @@ import { useMemo } from "react";
 
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-import { ThemeConfig } from "../../types";
+import { ThemeConfig } from "../../domain";
 
 const DEFAULT_CONFIG: ThemeConfig["slashID"] = {
   orgID: "",
