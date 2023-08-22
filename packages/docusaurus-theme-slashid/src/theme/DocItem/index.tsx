@@ -29,6 +29,11 @@ export default function DocItemWrapper(props: Props) {
   const config = useSlashIDConfig();
   const redirectTo = config.privateRedirectPath || "/";
 
+  const p = getSlashIDProps(props);
+  if (p) {
+    console.log("DocItemWrapper", { p });
+  }
+
   if (!shouldItemRender(getSlashIDProps(props), user)) {
     return <Redirect to={redirectTo} />;
   }

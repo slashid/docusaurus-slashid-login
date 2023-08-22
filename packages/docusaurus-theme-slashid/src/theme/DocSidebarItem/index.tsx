@@ -49,6 +49,10 @@ export default function DocSidebarItemWrapper(props: Props) {
   const { user } = useSlashID();
   const slashIDProps = getSlashIDProps(props.item);
 
+  if (slashIDProps) {
+    console.log("DocSidebarItemWrapper", { slashIDProps });
+  }
+
   const Component = useMemo(() => {
     if (isCategory(props.item) && shouldNoItemsRender(props.item.items, user)) {
       return null;
