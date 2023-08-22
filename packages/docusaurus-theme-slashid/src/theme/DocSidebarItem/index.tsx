@@ -43,7 +43,6 @@ export default function DocSidebarItemWrapper(props: Props) {
       !isHtmlSidebarItem(props.item) &&
       !shouldPathRender(props.item.href, config.privatePaths, user)
     ) {
-      console.log("Rendering null because of path! - DocSidebarItemWrapper");
       return null;
     }
 

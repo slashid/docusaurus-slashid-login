@@ -39,10 +39,9 @@ export type Props = {
 export default function DocItemWrapper(props: Props) {
   const { user } = useSlashID();
   const config = useSlashIDConfig();
-  const redirectTo = config.privateRedirectPath || "/";
+  const redirectTo = config.privateRedirectPath;
 
   if (!shouldPathRender(props.route.path, config.privatePaths, user)) {
-    console.log("Redirecting because of path!");
     return <Redirect to={redirectTo} />;
   }
 
