@@ -14,7 +14,6 @@ import type {
 import { useSlashID, Groups } from "@slashid/react";
 import { User } from "@slashid/slashid";
 import DocSidebarItem from "@theme-init/DocSidebarItem";
-import type { Props } from "@theme/DocSidebarItem";
 
 import { SlashIDProps, shouldItemRender } from "../../domain";
 
@@ -44,6 +43,10 @@ function getSlashIDProps(item: PropSidebarItem): SlashIDProps | undefined {
 
   return props as SlashIDProps;
 }
+
+type Props = {
+  item: PropSidebarItem;
+};
 
 export default function DocSidebarItemWrapper(props: Props) {
   const { user } = useSlashID();

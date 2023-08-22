@@ -7,10 +7,10 @@
 
 import React from "react";
 
+import type { PropDocContent } from "@docusaurus/plugin-content-docs";
 import { Redirect } from "@docusaurus/router";
 import { useSlashID } from "@slashid/react";
 import DocItem from "@theme-init/DocItem";
-import type { Props } from "@theme/DocItem";
 
 import { SlashIDProps, shouldItemRender } from "../../domain";
 import { useSlashIDConfig } from "../hooks/useSlashIDConfig";
@@ -23,6 +23,10 @@ function getSlashIDProps(docItemProps: Props): SlashIDProps | undefined {
 
   return slashIDProps as SlashIDProps;
 }
+
+type Props = {
+  content: PropDocContent;
+};
 
 export default function DocItemWrapper(props: Props) {
   const { user } = useSlashID();
