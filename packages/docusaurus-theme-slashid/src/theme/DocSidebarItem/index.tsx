@@ -39,7 +39,7 @@ function shouldNoItemsRender(
 function getSlashIDProps(item: PropSidebarItem): SlashIDProps | undefined {
   const props = item?.customProps?.slashid;
 
-  if (props) return undefined;
+  if (!props) return undefined;
 
   return props as SlashIDProps;
 }
@@ -51,10 +51,6 @@ type Props = {
 export default function DocSidebarItemWrapper(props: Props) {
   const { user } = useSlashID();
   const slashIDProps = getSlashIDProps(props.item);
-
-  if (slashIDProps) {
-    console.log("DocSidebarItemWrapper", { slashIDProps });
-  }
 
   const Component = useMemo(() => {
     if (isCategory(props.item) && shouldNoItemsRender(props.item.items, user)) {
