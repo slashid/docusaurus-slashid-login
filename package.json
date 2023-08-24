@@ -8,8 +8,6 @@
     ]
   },
   "scripts": {
-    "lerna": "lerna",
-    "t": "lerna run publish:local && lerna run install:local",
     "prepare": "husky install",
     "watch": "lerna run watch --parallel",
     "test": "jest",
