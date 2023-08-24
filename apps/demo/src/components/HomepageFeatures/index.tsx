@@ -1,5 +1,14 @@
+/* ============================================================================
+ * Copyright (c) SlashID
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ * ========================================================================== */
+
 import React from "react";
+
 import clsx from "clsx";
+
 import styles from "./styles.module.css";
 
 type FeatureItem = {
@@ -9,6 +18,16 @@ type FeatureItem = {
 };
 
 const FeatureList: FeatureItem[] = [
+  {
+    title: "Authentication by SlashID",
+    Svg: require("@site/static/img/slashid_logo.svg").default,
+    description: (
+      <>
+        Using SlashID allows you to control access to your Docusaurus website.
+        Check the files in the <i>docs</i> directory for more information.
+      </>
+    ),
+  },
   {
     title: "Easy to Use",
     Svg: require("@site/static/img/undraw_docusaurus_mountain.svg").default,

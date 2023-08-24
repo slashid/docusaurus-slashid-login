@@ -11,6 +11,10 @@ sidebar_custom_props:
 
 Let's translate `docs/intro.md` to French.
 
+## Authentication
+
+Users need to be authenticated and belong to the `slashid` group to view this page.
+
 ## Configure i18n
 
 Modify `docusaurus.config.js` to add support for the `fr` locale:

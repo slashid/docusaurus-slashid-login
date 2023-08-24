@@ -12,6 +12,10 @@ sidebar_custom_props:
 
 Docusaurus can manage multiple versions of your docs.
 
+## Authentication
+
+Users need to be authenticated and belong to the `slashid` and `member` groups to view this page.
+
 ## Create a docs version
 
 Release a version 1.0 of your project:
