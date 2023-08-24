@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  * ========================================================================== */
 
-import { shouldPathRender } from "./domain";
+import { shouldPathRender, convertGlobToRegex } from "./domain";
 
 const TEST_USER = { getGroups: () => [] };
 
@@ -56,6 +56,27 @@ describe("domain", () => {
       expect(
         shouldPathRender("/foo/bar", [{ path: /^\/foo/ }], undefined)
       ).toBe(false);
+    });
+  });
+
+  describe("convertGlobToRegex", () => {
+    test("should convert glob strings to RegExp instances", () => {
+      const testConfig = {
+        orgID: "test",
+        privatePaths: [{ path: "/foo" }, { path: "/bar" }],
+      };
+      const { privatePaths } = convertGlobToRegex(testConfig);
+
+      if (!privatePaths || !privatePaths.length)
+        throw new Error("conversion failed");
+
+      expect(privatePaths.length === 2).toBeTruthy();
+      expect(privatePaths[0].path).toBeInstanceOf(RegExp);
+      // @ts-ignore
+      expect(privatePaths[0].path.source).toBe("^\\/foo$");
+      expect(privatePaths[1].path).toBeInstanceOf(RegExp);
+      // @ts-ignore
+      expect(privatePaths[1].path.source).toBe("^\\/bar$");
     });
   });
 });

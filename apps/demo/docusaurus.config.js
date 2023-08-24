@@ -75,7 +75,7 @@ const config = {
         // example: granular access based on paths
         privatePaths: [
           {
-            path: "/docs/tutorial-basics",
+            path: "/docs/tutorial-basics/*",
           },
           {
             path: "/docs/category/tutorial---basics",

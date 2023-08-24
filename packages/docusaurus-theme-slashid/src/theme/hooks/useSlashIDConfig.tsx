@@ -9,7 +9,7 @@ import { useMemo } from "react";
 
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-import { ThemeConfig } from "../../domain";
+import { ThemeConfig, convertGlobToRegex } from "../../domain";
 
 const DEFAULT_CONFIG = {
   orgID: "",
@@ -19,12 +19,16 @@ const DEFAULT_CONFIG = {
   privateRedirectPath: "/",
 };
 
-export const useSlashIDConfig = () => {
+export const useSlashIDConfig = (): ThemeConfig["slashID"] => {
   const { siteConfig } = useDocusaurusContext();
-  const { slashID } = siteConfig.themeConfig as ThemeConfig;
+  const { slashID } = siteConfig.themeConfig as unknown as ThemeConfig;
 
   const safeOptions = useMemo(() => {
-    return { ...DEFAULT_CONFIG, ...slashID };
+    const optionsWithDefaults: ThemeConfig["slashID"] = {
+      ...DEFAULT_CONFIG,
+      ...slashID,
+    };
+    return convertGlobToRegex(optionsWithDefaults);
   }, [slashID]);
 
   return safeOptions;

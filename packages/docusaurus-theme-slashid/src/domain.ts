@@ -12,13 +12,14 @@ import type {
 } from "@docusaurus/plugin-content-docs";
 import type { User } from "@slashid/slashid";
 import { OAuthProvider } from "@slashid/slashid";
+import globToRegexp from "glob-to-regexp";
 
 export interface PrivatePath {
   path: string | RegExp;
   groups?: string[];
 }
 export interface ThemeConfig {
-  slashID?: {
+  slashID: {
     orgID: string;
     oidcClientID?: string;
     oidcProvider?: OAuthProvider;
@@ -127,4 +128,31 @@ export function shouldNoItemsRender(
       }
     }).length === 0
   );
+}
+
+/**
+ * Ensure the privatePaths config is converted to RegExp instances if globs are used.
+ */
+export function convertGlobToRegex(
+  config: ThemeConfig["slashID"]
+): ThemeConfig["slashID"] {
+  if (config?.privatePaths) {
+    let convertedPaths = [];
+    convertedPaths = config.privatePaths.map((pathConfig) => {
+      if (typeof pathConfig.path === "string") {
+        try {
+          return { ...pathConfig, path: globToRegexp(pathConfig.path) };
+        } catch (e) {
+          console.error(`Invalid glob pattern: ${pathConfig}`);
+          return pathConfig;
+        }
+      }
+
+      return pathConfig;
+    });
+
+    return { ...config, privatePaths: convertedPaths };
+  }
+
+  return config;
 }
