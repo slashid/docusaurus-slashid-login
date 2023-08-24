@@ -1,3 +1,14 @@
+## 0.3.0 (Aug 24, 2023)
+
+High level enhancements
+
+- added more granular configuration options allowing access control on the page & path levels
+- added the demo project as an example on how to use the library
+
+Other enhancements and bug fixes
+
+- fixed the CSS issues with dark mode
+
 ## 0.2.3 (Aug 7, 2023)
 
 High level enhancements
