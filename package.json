@@ -12,7 +12,7 @@
     "watch": "lerna run watch --parallel",
     "test": "jest",
     "build": "yarn build-packages",
-    "build-packages": "lerna run build --no-private --stream",
+    "build-packages": "lerna run build --stream",
     "format": "prettier . --check --ignore-unknown --ignore-path .prettierignore",
     "lint": "eslint . --ignore-path .gitignore --ext .ts,.tsx,.js",
     "release:changelog": "scripts/changelog.ts",
