@@ -15,9 +15,11 @@
   border-radius: 16px;
   padding: 10.5px 16px;
   width: fit-content;
-  background-color: #f3f3f5;
+  color: var(--ifm-color-gray-900);
+  background-color: var(--ifm-color-secondary);
 }
 
 .button:hover {
-  background-color: rgba(20, 32, 72, 0.04);
+  cursor: pointer;
+  background-color: var(--ifm-color-secondary-dark);
 }
