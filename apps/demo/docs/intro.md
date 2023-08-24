@@ -23,6 +23,8 @@ There are two ways to configure the access control for a page:
 Please check the files in the `apps/demo/docs/tutorial-extras` folder for examples on how to use front matter.
 Also check the `docusaurus.config.js` file for examples on how to use path based access control.
 
+Try logging in to see the difference!
+
 ## Getting Started
 
 This demo Docusaurus site comes with everything you need to get started quickly. It is pre-configured with SlashID authentication and a couple of sample pages.
