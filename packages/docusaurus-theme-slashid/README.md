@@ -112,6 +112,21 @@ interface PrivatePath {
 }
 ```
 
+## Page level configuration
+
+The theme can be configured at the page level using front matter to pass `sidebar_custom_props`.
+
+```yaml
+sidebar_custom_props:
+  slashid:
+    auth: true
+    groups:
+      - member
+```
+
+The above configuration will require the user to be authenticated and belong to the `member` group to view the page.
+`groups` property is optional and if not specified, the user only needs to be authenticated to view the page.
+
 ## Support
 
 Please read [SUPPORT.md](https://github.com/slashid/docusaurus-slashid-login/blob/main/SUPPORT.md) for details on how to get support for this project.
