@@ -3,14 +3,16 @@
   "private": true,
   "workspaces": {
     "packages": [
-      "packages/*"
+      "packages/*",
+      "apps/*"
     ]
   },
   "scripts": {
     "prepare": "husky install",
     "watch": "lerna run watch --parallel",
+    "test": "jest",
     "build": "yarn build-packages",
-    "build-packages": "lerna run build --no-private --stream",
+    "build-packages": "lerna run build --stream",
     "format": "prettier . --check --ignore-unknown --ignore-path .prettierignore",
     "lint": "eslint . --ignore-path .gitignore --ext .ts,.tsx,.js",
     "release:changelog": "scripts/changelog.ts",
@@ -26,6 +28,7 @@
     "@babel/plugin-proposal-optional-chaining": "^7.16.0",
     "@babel/plugin-transform-modules-commonjs": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
+    "@slashid/slashid": "^3.12.0",
     "@types/jest": "^27.0.2",
     "@types/node": "^17.0.2",
     "@typescript-eslint/eslint-plugin": "^4.0.0",

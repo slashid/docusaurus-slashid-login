@@ -58,6 +58,12 @@ Add the following to `docusaurus.config.js` to start using the theme:
         forceLogin: "boolean flag to determine if login is required",
         baseURL: "optional base API URL for the SDK, defaults to the production environment",
         sdkURL: "optional base SDK page URL for the SDK, defaults to the production environment",
+        privatePaths: [
+          {
+            path: "a glob or a regex specifiying the path to protect",
+            groups: ["optional list of groups that can access the path"],
+          }
+        ],
       },
 
     themes: ["@slashid/docusaurus-theme-slashid"],
@@ -85,14 +91,41 @@ Also please remember to include the login form styles:
 
 The `docusaurus-theme-slashid` theme can be configured with the following options:
 
-| Name                   | Type      | Default | Description                                                            |
-| ---------------------- | --------- | ------- | ---------------------------------------------------------------------- |
-| `slashID.orgID`        | `string`  | `null`  | The SlashID organization ID.                                           |
-| `slashID.oidcClientID` | `string`  | `null`  | OIDC client ID.                                                        |
-| `slashID.oidcProvider` | `string`  | `null`  | OIDC provider name.                                                    |
-| `slashID.forceLogin`   | `boolean` | `false` | Make login required.                                                   |
-| `slashID.baseURL`      | `boolean` | `false` | Base API URL for the SDK, defaults to the production environment.      |
-| `slashID.sdkURL`       | `boolean` | `false` | Base SDK page URL for the SDK, defaults to the production environment. |
+| Name                   | Type            | Default     | Description                                                            |
+| ---------------------- | --------------- | ----------- | ---------------------------------------------------------------------- |
+| `slashID.orgID`        | `string`        | `null`      | The SlashID organization ID.                                           |
+| `slashID.oidcClientID` | `string`        | `null`      | OIDC client ID.                                                        |
+| `slashID.oidcProvider` | `string`        | `null`      | OIDC provider name.                                                    |
+| `slashID.forceLogin`   | `boolean`       | `false`     | Make login required.                                                   |
+| `slashID.baseURL`      | `boolean`       | `false`     | Base API URL for the SDK, defaults to the production environment.      |
+| `slashID.sdkURL`       | `boolean`       | `false`     | Base SDK page URL for the SDK, defaults to the production environment. |
+| `slashID.privatePaths` | `PrivatePath[]` | `undefined` | Optional set of private paths.                                         |
+
+### Interface: `PrivatePath`
+
+A private path is a path that requires authentication to access. The `slashID.privatePaths` option is an array of `PrivatePath` objects.
+
+```ts
+interface PrivatePath {
+  path: string; // a glob or a regex specifiying the path to protect
+  groups?: string[]; // optional list of groups that can access the path
+}
+```
+
+## Page level configuration
+
+The theme can be configured at the page level using front matter to pass `sidebar_custom_props`.
+
+```yaml
+sidebar_custom_props:
+  slashid:
+    auth: true
+    groups:
+      - member
+```
+
+The above configuration will require the user to be authenticated and belong to the `member` group to view the page.
+`groups` property is optional and if not specified, the user only needs to be authenticated to view the page.
 
 ## Support
 

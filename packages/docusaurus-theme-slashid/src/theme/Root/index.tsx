@@ -7,15 +7,13 @@
 
 import React, { useContext } from "react";
 
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useIsBrowser from "@docusaurus/useIsBrowser";
-import { SlashIDProvider, useSlashID } from "@slashid/react";
+import { SlashIDProvider, SlashIDLoaded, useSlashID } from "@slashid/react";
 import { OAuthProvider } from "@slashid/slashid";
-
-import { ThemeConfig } from "../../types";
 
 import "./reset.css";
 import "./globals.css";
+import { useSlashIDConfig } from "../hooks/useSlashIDConfig";
 import { AuthContext, AuthProvider } from "./auth-context";
 import { SlashID } from "./slashid";
 
@@ -58,24 +56,25 @@ const AuthCheck: React.FC<AuthCheckProps> = ({
 
 // Default implementation, that you can customize
 export default function Root({ children }: any) {
-  const { siteConfig } = useDocusaurusContext();
-  const themeConfig = siteConfig.themeConfig as ThemeConfig;
-  const options = themeConfig.slashID;
+  const options = useSlashIDConfig();
 
   return (
     <SlashIDProvider
-      oid={options?.orgID!}
-      baseApiUrl={options?.baseURL || "https://api.slashid.com"}
-      sdkUrl={options?.sdkURL || "https://cdn.slashid.com/sdk.html"}
+      oid={options.orgID}
+      baseApiUrl={options.baseURL}
+      sdkUrl={options.sdkURL}
+      tokenStorage="localStorage"
     >
       <AuthProvider>
-        <AuthCheck
-          forceLogin={options?.forceLogin}
-          oidcClientID={options?.oidcClientID}
-          oidcProvider={options?.oidcProvider}
-        >
-          {children}
-        </AuthCheck>
+        <SlashIDLoaded>
+          <AuthCheck
+            forceLogin={options.forceLogin}
+            oidcClientID={options.oidcClientID}
+            oidcProvider={options.oidcProvider}
+          >
+            {children}
+          </AuthCheck>
+        </SlashIDLoaded>
       </AuthProvider>
     </SlashIDProvider>
   );
