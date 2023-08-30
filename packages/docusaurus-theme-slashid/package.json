@@ -1,8 +1,7 @@
 {
   "name": "@slashid/docusaurus-theme-slashid",
+  "version": "0.3.1",
   "description": "SlashID theme for Docusaurus.",
-  "version": "0.3.0",
-  "license": "MIT",
   "keywords": [
     "login",
     "authentication",
@@ -11,78 +10,62 @@
     "theme",
     "slashid"
   ],
-  "publishConfig": {
-    "access": "public"
+  "bugs": {
+    "url": "https://github.com/slashid/docusaurus-slashid-login/issues"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/slashid/docusaurus-slashid-login.git",
     "directory": "packages/docusaurus-theme-openapi-docs"
   },
-  "bugs": {
-    "url": "https://github.com/slashid/docusaurus-slashid-login/issues"
-  },
+  "license": "MIT",
   "main": "lib/index.js",
   "scripts": {
-    "build": "tsc --noEmit && yarn babel:lib && yarn babel:lib-next && yarn format:lib-next",
-    "watch": "concurrently --names \"lib,lib-next,tsc\" --kill-others \"yarn babel:lib --watch\" \"yarn babel:lib-next --watch\" \"yarn tsc --watch\"",
     "babel:lib": "cross-env BABEL_ENV=lib babel src -d lib --extensions \".tsx,.ts\" --ignore \"**/*.d.ts\" --copy-files",
     "babel:lib-next": "cross-env BABEL_ENV=lib-next babel src -d lib-next --extensions \".tsx,.ts\" --ignore \"**/*.d.ts\" --copy-files",
+    "build": "tsc --noEmit && yarn babel:lib && yarn babel:lib-next && yarn format:lib-next",
     "format:lib-next": "prettier --config ../../.prettierrc.json --write \"lib-next/**/*.{js,ts,jsx,tsc}\"",
-    "publish:local": "rm -rf lib && rm -rf lib-next && yarn build && yarn yalc publish"
-  },
-  "devDependencies": {
-    "@docusaurus/core": "^2.1.0",
-    "@docusaurus/mdx-loader": "^2.1.0",
-    "@docusaurus/module-type-aliases": "^2.1.0",
-    "@docusaurus/theme-common": "^2.1.0",
-    "@docusaurus/types": "^2.1.0",
-    "@docusaurus/utils": "^2.1.0",
-    "@docusaurus/utils-validation": "^2.1.0",
-    "@types/concurrently": "^6.3.0",
-    "@types/crypto-js": "^4.1.0",
-    "@types/fs-extra": "^9.0.13",
-    "@types/glob-to-regexp": "^0.4.1",
-    "@types/lodash": "^4.14.176",
-    "@types/mdx-js__react": "^1.5.4",
-    "@types/rtlcss": "^3.1.1",
-    "concurrently": "^5.2.0"
+    "publish:local": "rm -rf lib && rm -rf lib-next && yarn build && yarn yalc publish",
+    "watch": "concurrently --names \"lib,lib-next,tsc\" --kill-others \"yarn babel:lib --watch\" \"yarn babel:lib-next --watch\" \"yarn tsc --watch\""
   },
   "dependencies": {
-    "@docusaurus/core": "^2.1.0",
-    "@docusaurus/mdx-loader": "^2.1.0",
-    "@docusaurus/module-type-aliases": "^2.1.0",
-    "@docusaurus/theme-common": "^2.1.0",
-    "@docusaurus/types": "^2.1.0",
-    "@docusaurus/utils": "^2.1.0",
-    "@docusaurus/utils-validation": "^2.1.0",
-    "@mdx-js/react": "^1.6.21",
-    "@reduxjs/toolkit": "^1.7.1",
     "@slashid/react": "^1.10.0",
     "@slashid/slashid": "^3.12.0",
     "buffer": "^6.0.3",
     "clsx": "^1.1.1",
-    "crypto-js": "^4.1.1",
     "glob-to-regexp": "^0.4.1",
-    "immer": "^9.0.7",
-    "lodash": "^4.17.20",
-    "process": "^0.11.10",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-live": "^3.1.1",
-    "react-markdown": "^8.0.1",
-    "react-redux": "^7.2.0",
-    "redux-devtools-extension": "^2.13.8",
+    "process": "^0.11.10"
+  },
+  "devDependencies": {
+    "@docusaurus/core": "^2.4.0",
+    "@docusaurus/mdx-loader": "^2.4.0",
+    "@docusaurus/module-type-aliases": "^2.4.0",
+    "@docusaurus/theme-common": "^2.4.0",
+    "@docusaurus/types": "^2.4.0",
+    "@docusaurus/utils": "^2.4.0",
+    "@docusaurus/utils-validation": "^2.4.0",
+    "@types/concurrently": "^6.3.0",
+    "@types/glob-to-regexp": "^0.4.1",
+    "concurrently": "^5.2.0",
     "webpack": "^5.61.0",
-    "xml-formatter": "^2.6.1",
     "yalc": "^1.0.0-pre.53"
   },
   "peerDependencies": {
+    "@docusaurus/core": "^2.4.0",
+    "@docusaurus/mdx-loader": "^2.4.0",
+    "@docusaurus/module-type-aliases": "^2.4.0",
+    "@docusaurus/theme-common": "^2.4.0",
+    "@docusaurus/types": "^2.4.0",
+    "@docusaurus/utils": "^2.4.0",
+    "@docusaurus/utils-validation": "^2.4.0",
     "react": "^16.8.4 || ^17.0.2",
     "react-dom": "^16.8.4 || ^17.0.2"
   },
   "engines": {
     "node": ">=14"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "gitHead": "40d299e8f55ff9b8a0fddf7db87c50df3bb78c54"
 }

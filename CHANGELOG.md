@@ -1,3 +1,10 @@
+## 0.3.1 (Aug 30, 2023)
+
+High level enhancements
+
+- Upgrade to docusaurus@2.4.0
+- Removed unused dependencies
+
 ## 0.3.0 (Aug 24, 2023)
 
 High level enhancements

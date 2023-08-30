@@ -8,17 +8,20 @@
     ]
   },
   "scripts": {
-    "prepare": "husky install",
-    "watch": "lerna run watch --parallel",
-    "test": "jest",
     "build": "yarn build-packages",
     "build-packages": "lerna run build --stream",
+    "clean": "rm -rf node_modules build && find packages -name node_modules -type d -maxdepth 2 -exec rm -rf {} + && find packages -name dist -type d -maxdepth 2 -exec rm -rf {} + && find packages -name lib -type d -maxdepth 2 -exec rm -rf {} + && find packages -name lib-next -type d -maxdepth 2 -exec rm -rf {} +",
     "format": "prettier . --check --ignore-unknown --ignore-path .prettierignore",
     "lint": "eslint . --ignore-path .gitignore --ext .ts,.tsx,.js",
+    "prepare": "husky install",
     "release:changelog": "scripts/changelog.ts",
-    "release:version": "scripts/version.ts",
     "release:publish": "scripts/publish.ts",
-    "clean": "rm -rf node_modules build && find packages -name node_modules -type d -maxdepth 2 -exec rm -rf {} + && find packages -name dist -type d -maxdepth 2 -exec rm -rf {} + && find packages -name lib -type d -maxdepth 2 -exec rm -rf {} + && find packages -name lib-next -type d -maxdepth 2 -exec rm -rf {} +"
+    "release:version": "scripts/version.ts",
+    "test": "jest",
+    "watch": "lerna run watch --parallel"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.0",
@@ -57,9 +60,6 @@
     "ts-jest": "^27.0.6",
     "ts-node": "^10.4.0",
     "typescript": "^4.4.4"
-  },
-  "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
   },
   "engines": {
     "node": ">=14"
