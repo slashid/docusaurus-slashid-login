@@ -69,13 +69,13 @@ const config = {
         // orgID used for code examples
         orgID: "a6b69fd8-cd7a-f516-2705-d531d709acf8",
         forceLogin: false,
-        // uses the sandbox API
-        baseURL: "https://api.sandbox.slashid.com",
-        sdkURL: "https://cdn.sandbox.slashid.com/sdk.html",
+        // uses the production API
+        baseURL: "https://api.slashid.com",
+        sdkURL: "https://cdn.slashid.com/sdk.html",
         // example: granular access based on paths
         privatePaths: [
           {
-            path: "/docs/tutorial-basics/*",
+            path: "/docs/category/tutorial---basics/*",
           },
           {
             path: "/docs/category/tutorial---basics",
