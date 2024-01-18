@@ -1,3 +1,10 @@
+## 0.3.2 (Jan 18, 2024)
+
+High level enhancements
+
+- updated docs to show the production as the default option
+- protect the generated category page on direct access
+
 ## 0.3.1 (Aug 30, 2023)
 
 High level enhancements
