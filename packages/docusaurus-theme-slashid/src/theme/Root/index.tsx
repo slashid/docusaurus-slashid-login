@@ -8,7 +8,12 @@
 import React, { useContext } from "react";
 
 import useIsBrowser from "@docusaurus/useIsBrowser";
-import { SlashIDProvider, SlashIDLoaded, useSlashID } from "@slashid/react";
+import {
+  SlashIDProvider,
+  SlashIDLoaded,
+  useSlashID,
+  ServerThemeRoot,
+} from "@slashid/react";
 import { OAuthProvider } from "@slashid/slashid";
 
 import "./reset.css";
@@ -65,17 +70,19 @@ export default function Root({ children }: any) {
       sdkUrl={options.sdkURL}
       tokenStorage="localStorage"
     >
-      <AuthProvider>
-        <SlashIDLoaded>
-          <AuthCheck
-            forceLogin={options.forceLogin}
-            oidcClientID={options.oidcClientID}
-            oidcProvider={options.oidcProvider}
-          >
-            {children}
-          </AuthCheck>
-        </SlashIDLoaded>
-      </AuthProvider>
+      <ServerThemeRoot>
+        <AuthProvider>
+          <SlashIDLoaded>
+            <AuthCheck
+              forceLogin={options.forceLogin}
+              oidcClientID={options.oidcClientID}
+              oidcProvider={options.oidcProvider}
+            >
+              {children}
+            </AuthCheck>
+          </SlashIDLoaded>
+        </AuthProvider>
+      </ServerThemeRoot>
     </SlashIDProvider>
   );
 }
