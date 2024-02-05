@@ -5,6 +5,10 @@ High level enhancements
 - upgraded `@slashid/react` to v1.18.0
 - upgraded `@slashid/slashid` to v3.18.0
 
+Other enhancements and bug fixes
+
+- added `ServerThemeProvider` to the theme Root to fix the issue with CSS variables not applied correctly
+
 ## 0.3.2 (Jan 18, 2024)
 
 High level enhancements
