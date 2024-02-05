@@ -29,8 +29,8 @@
     "watch": "concurrently --names \"lib,lib-next,tsc\" --kill-others \"yarn babel:lib --watch\" \"yarn babel:lib-next --watch\" \"yarn tsc --watch\""
   },
   "dependencies": {
-    "@slashid/react": "^1.10.0",
-    "@slashid/slashid": "^3.12.0",
+    "@slashid/react": "^1.18.0",
+    "@slashid/slashid": "^3.18.0",
     "buffer": "^6.0.3",
     "clsx": "^1.1.1",
     "glob-to-regexp": "^0.4.1",
@@ -58,8 +58,8 @@
     "@docusaurus/types": "^2.4.0",
     "@docusaurus/utils": "^2.4.0",
     "@docusaurus/utils-validation": "^2.4.0",
-    "react": "^16.8.4 || ^17.0.2",
-    "react-dom": "^16.8.4 || ^17.0.2"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "engines": {
     "node": ">=14"

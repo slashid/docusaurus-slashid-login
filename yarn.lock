@@ -3317,6 +3317,22 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
 
+"@radix-ui/react-accordion@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-accordion/-/react-accordion-1.1.2.tgz#738441f7343e5142273cdef94d12054c3287966f"
+  integrity sha512-fDG7jcoNKVjSK6yfmuAs0EnPDro0WMXIhMtXdTBWqEioVW206ku+4Lw07e+13lUkFkpoEQ2PdeMIAGpdqEAmDg==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+    "@radix-ui/primitive" "1.0.1"
+    "@radix-ui/react-collapsible" "1.0.3"
+    "@radix-ui/react-collection" "1.0.3"
+    "@radix-ui/react-compose-refs" "1.0.1"
+    "@radix-ui/react-context" "1.0.1"
+    "@radix-ui/react-direction" "1.0.1"
+    "@radix-ui/react-id" "1.0.1"
+    "@radix-ui/react-primitive" "1.0.3"
+    "@radix-ui/react-use-controllable-state" "1.0.1"
+
 "@radix-ui/react-arrow@1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-arrow/-/react-arrow-1.0.3.tgz#c24f7968996ed934d57fe6cde5d6ec7266e1d25d"
@@ -3324,6 +3340,21 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-primitive" "1.0.3"
+
+"@radix-ui/react-collapsible@1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-collapsible/-/react-collapsible-1.0.3.tgz#df0e22e7a025439f13f62d4e4a9e92c4a0df5b81"
+  integrity sha512-UBmVDkmR6IvDsloHVN+3rtx4Mi5TFvylYXpluuv0f37dtaz3H99bp8No0LGXRigVpl3UAT4l9j6bIchh42S/Gg==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+    "@radix-ui/primitive" "1.0.1"
+    "@radix-ui/react-compose-refs" "1.0.1"
+    "@radix-ui/react-context" "1.0.1"
+    "@radix-ui/react-id" "1.0.1"
+    "@radix-ui/react-presence" "1.0.1"
+    "@radix-ui/react-primitive" "1.0.3"
+    "@radix-ui/react-use-controllable-state" "1.0.1"
+    "@radix-ui/react-use-layout-effect" "1.0.1"
 
 "@radix-ui/react-collection@1.0.3":
   version "1.0.3"
@@ -3509,6 +3540,20 @@
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-compose-refs" "1.0.1"
 
+"@radix-ui/react-switch@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-switch/-/react-switch-1.0.3.tgz#6119f16656a9eafb4424c600fdb36efa5ec5837e"
+  integrity sha512-mxm87F88HyHztsI7N+ZUmEoARGkC22YVW5CaC+Byc+HRpuvCrOBPTAnXgf+tZ/7i0Sg/eOePGdMhUKhPaQEqow==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+    "@radix-ui/primitive" "1.0.1"
+    "@radix-ui/react-compose-refs" "1.0.1"
+    "@radix-ui/react-context" "1.0.1"
+    "@radix-ui/react-primitive" "1.0.3"
+    "@radix-ui/react-use-controllable-state" "1.0.1"
+    "@radix-ui/react-use-previous" "1.0.1"
+    "@radix-ui/react-use-size" "1.0.1"
+
 "@radix-ui/react-tabs@^1.0.1":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-tabs/-/react-tabs-1.0.4.tgz#993608eec55a5d1deddd446fa9978d2bc1053da2"
@@ -3633,25 +3678,45 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@slashid/react@^1.10.0":
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/@slashid/react/-/react-1.10.0.tgz#5c5a1618f085ce410a1a61734a01f98e2e1221ee"
-  integrity sha512-kbJ6MVDdoq7ftavYJei3/3+8gtYNq9lCW4UyhbysfRTKQbh23Ietm21ym//50P0Effjt53V6Tofj3MDfwqGsjQ==
+"@slashid/react@^1.18.0":
+  version "1.18.0"
+  resolved "https://registry.yarnpkg.com/@slashid/react/-/react-1.18.0.tgz#5897c566b3fa5ebad8904a54148f23e8e089bb82"
+  integrity sha512-sxQszbbBy/6+ngtVBbEEvZT+toQo/OGb9lAzjQVsxUK3RveqiKkJTCDSyl9uy2AbeIq8JyaYXpRQzv/ehXC/nw==
   dependencies:
+    "@radix-ui/react-accordion" "^1.1.2"
     "@radix-ui/react-dialog" "^1.0.4"
     "@radix-ui/react-select" "^1.1.2"
+    "@radix-ui/react-switch" "^1.0.3"
     "@radix-ui/react-tabs" "^1.0.1"
     "@vanilla-extract/css" "^1.9.2"
     "@vanilla-extract/dynamic" "^2.0.3"
     "@vanilla-extract/recipes" "^0.3.0"
     "@vanilla-extract/sprinkles" "^1.5.1"
     compress.js "^1.2.2"
+    country-flag-emoji-polyfill "^0.1.4"
     country-list-with-dial-code-and-flag "^3.0.2"
 
 "@slashid/slashid@^3.12.0":
   version "3.12.0"
   resolved "https://registry.yarnpkg.com/@slashid/slashid/-/slashid-3.12.0.tgz#9b8fe2e0900eedaa1c375c840550aa866818ec9f"
   integrity sha512-v5WfPZs7VXum142e4iM1lpD1L8HEb1E9XWXF/XRKy5t1PSKchiikKg8XvXddM/TDxYhK92pbEnhR0eFMwWN6tQ==
+  dependencies:
+    "@changesets/cli" "^2.26.2"
+    "@types/uuid" "8.3.4"
+    changeset "^0.2.6"
+    docdash "^1.2.0"
+    jwt-decode "^3.1.2"
+    mitt "^3.0.0"
+    qrcode "^1.5.1"
+    querystring-es3 "^0.2.1"
+    regenerator-runtime "^0.13.9"
+    url "^0.11.0"
+    uuid "8.3.2"
+
+"@slashid/slashid@^3.18.0":
+  version "3.18.0"
+  resolved "https://registry.yarnpkg.com/@slashid/slashid/-/slashid-3.18.0.tgz#ead3593425e643645fa595b1faaa7c802ef3bfe7"
+  integrity sha512-pPZ5eZvXkHuu5u58UuS2cCULH9Xi1BHQ/pzHKVE/tNE2SxjlBfGl3VcZaL4g/qMN6hV4mei779s0ieivsAWjHQ==
   dependencies:
     "@changesets/cli" "^2.26.2"
     "@types/uuid" "8.3.4"
@@ -6150,6 +6215,11 @@ cosmiconfig@^7.0.0, cosmiconfig@^7.0.1:
     parse-json "^5.0.0"
     path-type "^4.0.0"
     yaml "^1.10.0"
+
+country-flag-emoji-polyfill@^0.1.4:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/country-flag-emoji-polyfill/-/country-flag-emoji-polyfill-0.1.8.tgz#d2cfb23dd2f949b80d83eb9822b613bf62957173"
+  integrity sha512-Mbah52sADS3gshUYhK5142gtUuJpHYOXlXtLFI3Ly4RqgkmPMvhX9kMZSTqDM8P7UqtSW99eHKFphhQSGXA3Cg==
 
 country-list-with-dial-code-and-flag@^3.0.2:
   version "3.0.3"
