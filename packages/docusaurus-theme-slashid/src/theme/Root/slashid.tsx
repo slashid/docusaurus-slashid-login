@@ -9,20 +9,20 @@ import React, { useCallback } from "react";
 
 import useIsBrowser from "@docusaurus/useIsBrowser";
 import { ConfigurationProvider, Form } from "@slashid/react";
-import { Factor, OAuthProvider, User } from "@slashid/slashid";
+import { User } from "@slashid/slashid";
 
+import { SlashIDConfigurationProviderConfig } from "../../domain";
 import { AuthContext } from "./auth-context";
 import styles from "./slashid.module.css";
 
 type Props = {
-  oidcClientID?: string;
-  oidcProvider?: OAuthProvider;
+  configuration: SlashIDConfigurationProviderConfig;
 };
 
 // SlashID docs depend on this
 export const STORAGE_KEY = "MY_USER_TOKEN";
 
-export function SlashID({ oidcClientID, oidcProvider }: Props) {
+export function SlashID({ configuration }: Props) {
   const { setShowLogin } = React.useContext(AuthContext);
   const isBrowser = useIsBrowser();
   const handleSuccess = useCallback(
@@ -35,27 +35,8 @@ export function SlashID({ oidcClientID, oidcProvider }: Props) {
     [isBrowser, setShowLogin]
   );
 
-  let factors: Factor[] = [
-    {
-      method: "email_link",
-    },
-  ];
-
-  const hasOidc = oidcClientID && oidcProvider;
-  if (hasOidc) {
-    const oidcFactor: Factor = {
-      method: "oidc",
-      options: {
-        client_id: oidcClientID,
-        provider: oidcProvider,
-        ux_mode: "popup",
-      },
-    };
-    factors = [...factors, oidcFactor];
-  }
-
   return (
-    <ConfigurationProvider factors={factors} storeLastHandle>
+    <ConfigurationProvider factors={configuration.factors} storeLastHandle>
       <main className={styles.slashid}>
         <Form className={styles.form} onSuccess={handleSuccess} />
       </main>

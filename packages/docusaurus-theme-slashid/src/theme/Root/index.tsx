@@ -37,6 +37,7 @@ const AuthCheck: React.FC<AuthCheckProps> = ({
   const { user } = useSlashID();
   const { showLogin } = useContext(AuthContext);
   const isBrowser = useIsBrowser();
+  const options = useSlashIDConfig();
 
   // TODO figure out where the reference to window is
   if (!isBrowser) {
@@ -48,12 +49,12 @@ const AuthCheck: React.FC<AuthCheckProps> = ({
     return user ? (
       <>{children}</>
     ) : (
-      <SlashID oidcClientID={oidcClientID} oidcProvider={oidcProvider} />
+      <SlashID configuration={options.formConfiguration!} />
     );
   }
 
   return showLogin ? (
-    <SlashID oidcClientID={oidcClientID} oidcProvider={oidcProvider} />
+    <SlashID configuration={options.formConfiguration!} />
   ) : (
     <>{children}</>
   );
@@ -73,13 +74,7 @@ export default function Root({ children }: any) {
       <ServerThemeRoot>
         <AuthProvider>
           <SlashIDLoaded>
-            <AuthCheck
-              forceLogin={options.forceLogin}
-              oidcClientID={options.oidcClientID}
-              oidcProvider={options.oidcProvider}
-            >
-              {children}
-            </AuthCheck>
+            <AuthCheck forceLogin={options.forceLogin}>{children}</AuthCheck>
           </SlashIDLoaded>
         </AuthProvider>
       </ServerThemeRoot>

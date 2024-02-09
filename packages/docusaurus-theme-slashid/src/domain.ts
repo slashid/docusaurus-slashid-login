@@ -5,11 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  * ========================================================================== */
 
+import type { ContextType } from "react";
+
 import type {
   PropSidebarItem,
   PropSidebarItemHtml,
   PropSidebarItemCategory,
 } from "@docusaurus/plugin-content-docs";
+import { ConfigurationContext } from "@slashid/react";
 import type { User } from "@slashid/slashid";
 import { OAuthProvider } from "@slashid/slashid";
 import globToRegexp from "glob-to-regexp";
@@ -19,16 +22,34 @@ export interface PrivatePath {
   groups?: string[];
 }
 export interface ThemeConfig {
-  slashID: {
-    orgID: string;
-    oidcClientID?: string;
-    oidcProvider?: OAuthProvider;
-    forceLogin?: boolean;
-    baseURL?: string;
-    sdkURL?: string;
-    privatePaths?: PrivatePath[];
-    privateRedirectPath?: string;
-  };
+  slashID: LegacyThemeConfig | NewThemeConfig;
+}
+
+export interface LegacyThemeConfig {
+  orgID: string;
+  // @deprecated use formConfiguration instead
+  oidcClientID?: string;
+  // @deprecated use formConfiguration instead
+  oidcProvider?: OAuthProvider;
+  forceLogin?: boolean;
+  baseURL?: string;
+  sdkURL?: string;
+  privatePaths?: PrivatePath[];
+  privateRedirectPath?: string;
+}
+
+export type SlashIDConfigurationProviderConfig = Partial<
+  ContextType<typeof ConfigurationContext>
+>;
+
+export interface NewThemeConfig {
+  orgID: string;
+  forceLogin?: boolean;
+  baseURL?: string;
+  sdkURL?: string;
+  privatePaths?: PrivatePath[];
+  privateRedirectPath?: string;
+  formConfiguration?: SlashIDConfigurationProviderConfig;
 }
 
 export type SlashIDProps = {
