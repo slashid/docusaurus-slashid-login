@@ -98,7 +98,5 @@ export const useSlashIDConfig = (): NewThemeConfig => {
     return convertGlobToRegex(optionsWithDefaults);
   }, [slashID]);
 
-  console.log({ safeOptions });
-
   return safeOptions;
 };
