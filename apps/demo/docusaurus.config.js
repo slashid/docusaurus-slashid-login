@@ -63,12 +63,19 @@ const config = {
   themes: ["@slashid/docusaurus-theme-slashid"],
 
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+    /** @type {import('@slashid/docusaurus-theme-slashid').ThemeConfig} */
     ({
       slashID: {
         // orgID used for code examples
         orgID: "a6b69fd8-cd7a-f516-2705-d531d709acf8",
         forceLogin: false,
+        formConfiguration: {
+          factors: [{ method: "email_link" }],
+          logo: "https://logodix.com/logo/1931244.jpg",
+          text: {
+            "initial.title": "/id Docusaurus login theme",
+          },
+        },
         // uses the production API
         baseURL: "https://api.slashid.com",
         sdkURL: "https://cdn.slashid.com/sdk.html",

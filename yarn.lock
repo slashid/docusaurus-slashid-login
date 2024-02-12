@@ -3696,6 +3696,24 @@
     country-flag-emoji-polyfill "^0.1.4"
     country-list-with-dial-code-and-flag "^3.0.2"
 
+"@slashid/react@^1.18.1":
+  version "1.18.1"
+  resolved "https://registry.yarnpkg.com/@slashid/react/-/react-1.18.1.tgz#b1b8f0db3abec333a5cd74ee6d97811cd50b8fce"
+  integrity sha512-Y6MIOc6K8xMFozjGsWPJFEPC9y0Yj2UHEUNU6B9V93W0v6jPJb9BCEPnC+19oqTpCrk+UHSEH4F/hV+BjzxqWg==
+  dependencies:
+    "@radix-ui/react-accordion" "^1.1.2"
+    "@radix-ui/react-dialog" "^1.0.4"
+    "@radix-ui/react-select" "^1.1.2"
+    "@radix-ui/react-switch" "^1.0.3"
+    "@radix-ui/react-tabs" "^1.0.1"
+    "@vanilla-extract/css" "^1.9.2"
+    "@vanilla-extract/dynamic" "^2.0.3"
+    "@vanilla-extract/recipes" "^0.3.0"
+    "@vanilla-extract/sprinkles" "^1.5.1"
+    compress.js "^1.2.2"
+    country-flag-emoji-polyfill "^0.1.4"
+    country-list-with-dial-code-and-flag "^3.0.2"
+
 "@slashid/slashid@^3.12.0":
   version "3.12.0"
   resolved "https://registry.yarnpkg.com/@slashid/slashid/-/slashid-3.12.0.tgz#9b8fe2e0900eedaa1c375c840550aa866818ec9f"
@@ -3717,6 +3735,23 @@
   version "3.18.0"
   resolved "https://registry.yarnpkg.com/@slashid/slashid/-/slashid-3.18.0.tgz#ead3593425e643645fa595b1faaa7c802ef3bfe7"
   integrity sha512-pPZ5eZvXkHuu5u58UuS2cCULH9Xi1BHQ/pzHKVE/tNE2SxjlBfGl3VcZaL4g/qMN6hV4mei779s0ieivsAWjHQ==
+  dependencies:
+    "@changesets/cli" "^2.26.2"
+    "@types/uuid" "8.3.4"
+    changeset "^0.2.6"
+    docdash "^1.2.0"
+    jwt-decode "^3.1.2"
+    mitt "^3.0.0"
+    qrcode "^1.5.1"
+    querystring-es3 "^0.2.1"
+    regenerator-runtime "^0.13.9"
+    url "^0.11.0"
+    uuid "8.3.2"
+
+"@slashid/slashid@^3.18.2":
+  version "3.18.2"
+  resolved "https://registry.yarnpkg.com/@slashid/slashid/-/slashid-3.18.2.tgz#dc610ae2104bfd0fb5e528b42ad4852b50eef75d"
+  integrity sha512-h0t6IBZaRV/Jkl5x+F2/6QqxicdbAo9jllet0ketACeMIbMOoYWPCsRQq0XoK4M3ZAznhb2FBfg0JNHOKogQQg==
   dependencies:
     "@changesets/cli" "^2.26.2"
     "@types/uuid" "8.3.4"

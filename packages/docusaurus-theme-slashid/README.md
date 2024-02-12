@@ -19,12 +19,16 @@ SlashID theme to add authentication to Docusaurus.
 
 ## Overview
 
-The `@slashid/docusaurus-theme-slashid` package extends Docusaurus to add authentication to docusaurus. The theme can be combined with [docusaurus openapi docs](https://github.com/slashid/docusaurus-slashid-login) to preload API keys and API parameters directly through SlashID attributes.
+The `@slashid/docusaurus-theme-slashid` package extends [@docusaurus/preset-classic](https://docusaurus.io/docs/using-plugins#docusauruspreset-classic) to add authentication to websites generated using Docusaurus.
 
 Key Features:
 
 - **Compatible:** Supports Magic Links, Passkeys, OTP via sms and SSO.
 - **Personalization:** Allows to load per-user configuration data into docusaurus.
+
+## Documentation
+
+For detailed setup & usage instructions, please check the [documentation in our developer portal](https://developer.slashid.dev/docs/access/integrations/docusaurus-login). Below you'll find a short summary of steps required to get started quickly.
 
 ## Installation
 
@@ -32,14 +36,58 @@ Theme:
 
 ```bash
 # npm
-npm install @slashid/slashid @slashid/react @slashid/docusaurus-theme-slashid
+npm install @slashid/docusaurus-theme-slashid
 # yarn
-yarn add @slashid/slashid @slashid/react @slashid/docusaurus-theme-slashid
+yarn add @slashid/docusaurus-theme-slashid
 ```
 
 ## Configuring `docusaurus.config.js`
 
-Add the following to `docusaurus.config.js` to start using the theme:
+After installing the app and [signing up with SlashID](https://console.slashid.dev/signup) go through the following steps in order.
+
+### Adding the styles
+
+Include the login form styles:
+
+```js
+// under presets
+
+{
+    theme: {
+        customCss: [
+            require.resolve("@slashid/react/style.css"), // add this line
+        ],
+    }
+}
+```
+
+### Adding the Auth button
+
+You can render a button in the navbar to allow customers to log in. To do so, add this item to the `navbar.items` field in the `themeConfig`:
+
+```js
+{
+  // ...
+  themeConfig: ({
+    // ...
+    navbar: {
+      // ...
+      items: [
+        // ...
+        {
+          type: "custom-AuthButton",
+          position: "right",
+          className: "button button--secondary button--lg",
+        },
+      ],
+    },
+  });
+}
+```
+
+### Configure the theme
+
+Add the following to the `themeConfig` in `docusaurus.config.js`:
 
 ```js
 // docusaurus.config.js
@@ -53,8 +101,6 @@ Add the following to `docusaurus.config.js` to start using the theme:
       ...
       slashID: {
         orgID: "your slash id org id",
-        oidcClientID: "optional OIDC client ID",
-        oidcProvider: "optional OIDC provider name",
         forceLogin: "boolean flag to determine if login is required",
         baseURL: "optional base API URL for the SDK, defaults to the production environment",
         sdkURL: "optional base SDK page URL for the SDK, defaults to the production environment",
@@ -64,6 +110,16 @@ Add the following to `docusaurus.config.js` to start using the theme:
             groups: ["optional list of groups that can access the path"],
           }
         ],
+        formConfiguration: {
+          // authentication methods presented to end users
+          factors: [{ method: "email_link" }],
+          // logo you want to display on the login form
+          logo: "<YOUR_LOGO_URL>",
+          // customisable text content
+          text: {
+            "initial.title": "/id Docusaurus login theme",
+          },
+        },
       },
 
     themes: ["@slashid/docusaurus-theme-slashid"],
@@ -71,35 +127,24 @@ Add the following to `docusaurus.config.js` to start using the theme:
 }
 ```
 
-Also please remember to include the login form styles:
-
-```js
-// under presets
-
-{
-    theme: {
-        customCss: [
-            require.resolve("./src/css/custom.scss"), // existing custom css
-            require.resolve("@slashid/react/style.css"), // add this line
-        ],
-    }
-}
-
-```
+The configuration options are explained in the following section.
 
 ## Theme Configuration Options
 
 The `docusaurus-theme-slashid` theme can be configured with the following options:
 
-| Name                   | Type            | Default     | Description                                                            |
-| ---------------------- | --------------- | ----------- | ---------------------------------------------------------------------- |
-| `slashID.orgID`        | `string`        | `null`      | The SlashID organization ID.                                           |
-| `slashID.oidcClientID` | `string`        | `null`      | OIDC client ID.                                                        |
-| `slashID.oidcProvider` | `string`        | `null`      | OIDC provider name.                                                    |
-| `slashID.forceLogin`   | `boolean`       | `false`     | Make login required.                                                   |
-| `slashID.baseURL`      | `boolean`       | `false`     | Base API URL for the SDK, defaults to the production environment.      |
-| `slashID.sdkURL`       | `boolean`       | `false`     | Base SDK page URL for the SDK, defaults to the production environment. |
-| `slashID.privatePaths` | `PrivatePath[]` | `undefined` | Optional set of private paths.                                         |
+| Name                        | Type            | Default     | Description                                                            |
+| --------------------------- | --------------- | ----------- | ---------------------------------------------------------------------- |
+| `slashID.orgID`             | `string`        | `null`      | The SlashID organization ID.                                           |
+| `slashID.forceLogin`        | `boolean`       | `false`     | Make login required.                                                   |
+| `slashID.baseURL`           | `boolean`       | `false`     | Base API URL for the SDK, defaults to the production environment.      |
+| `slashID.sdkURL`            | `boolean`       | `false`     | Base SDK page URL for the SDK, defaults to the production environment. |
+| `slashID.privatePaths`      | `PrivatePath[]` | `undefined` | Optional set of private paths.                                         |
+| `slashID.formConfiguration` | `object`        | `undefined` | Optional form configuration                                            |
+
+### Form configuration
+
+As mentioned in the above table, it is possible to customise the login form by passing in the `slashID.formConfiguration` object. The values sent here are the same ones that can be passed to the [`<ConfigurationProvider>`](https://developer.slashid.dev/docs/access/react-sdk/reference/components/react-sdk-reference-configurationprovider#props). This lets you specify the authentication methods displayed to your users, customise the UI by swapping the text constants and the logo.
 
 ### Interface: `PrivatePath`
 
