@@ -32,9 +32,9 @@ Theme:
 
 ```bash
 # npm
-npm install @slashid/slashid @slashid/react @slashid/docusaurus-theme-slashid
+npm install @slashid/docusaurus-theme-slashid
 # yarn
-yarn add @slashid/slashid @slashid/react @slashid/docusaurus-theme-slashid
+yarn add @slashid/docusaurus-theme-slashid
 ```
 
 ## Configuring `docusaurus.config.js`
