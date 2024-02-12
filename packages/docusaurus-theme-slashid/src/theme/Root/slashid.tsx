@@ -36,7 +36,13 @@ export function SlashID({ configuration }: Props) {
   );
 
   return (
-    <ConfigurationProvider factors={configuration.factors} storeLastHandle>
+    <ConfigurationProvider
+      factors={configuration.factors}
+      logo={configuration.logo}
+      storeLastHandle={configuration.storeLastHandle ?? true}
+      text={configuration.text}
+      defaultCountryCode={configuration.defaultCountryCode ?? "US"}
+    >
       <main className={styles.slashid}>
         <Form className={styles.form} onSuccess={handleSuccess} />
       </main>

@@ -19,7 +19,7 @@ SlashID theme to add authentication to Docusaurus.
 
 ## Overview
 
-The `@slashid/docusaurus-theme-slashid` package extends Docusaurus to add authentication to docusaurus. The theme can be combined with [docusaurus openapi docs](https://github.com/slashid/docusaurus-slashid-login) to preload API keys and API parameters directly through SlashID attributes.
+The `@slashid/docusaurus-theme-slashid` package extends [@docusaurus/preset-classic](https://docusaurus.io/docs/using-plugins#docusauruspreset-classic) to add authentication to websites generated using Docusaurus.
 
 Key Features:
 
@@ -53,8 +53,6 @@ Add the following to `docusaurus.config.js` to start using the theme:
       ...
       slashID: {
         orgID: "your slash id org id",
-        oidcClientID: "optional OIDC client ID",
-        oidcProvider: "optional OIDC provider name",
         forceLogin: "boolean flag to determine if login is required",
         baseURL: "optional base API URL for the SDK, defaults to the production environment",
         sdkURL: "optional base SDK page URL for the SDK, defaults to the production environment",
@@ -64,6 +62,16 @@ Add the following to `docusaurus.config.js` to start using the theme:
             groups: ["optional list of groups that can access the path"],
           }
         ],
+        formConfiguration: {
+          // authentication methods presented to end users
+          factors: [{ method: "email_link" }],
+          // logo you want to display on the login form
+          logo: "<YOUR_LOGO_URL>",
+          // customisable text content
+          text: {
+            "initial.title": "/id Docusaurus login theme",
+          },
+        },
       },
 
     themes: ["@slashid/docusaurus-theme-slashid"],
@@ -87,19 +95,24 @@ Also please remember to include the login form styles:
 
 ```
 
+The configuration options are explained in the following section.
+
 ## Theme Configuration Options
 
 The `docusaurus-theme-slashid` theme can be configured with the following options:
 
-| Name                   | Type            | Default     | Description                                                            |
-| ---------------------- | --------------- | ----------- | ---------------------------------------------------------------------- |
-| `slashID.orgID`        | `string`        | `null`      | The SlashID organization ID.                                           |
-| `slashID.oidcClientID` | `string`        | `null`      | OIDC client ID.                                                        |
-| `slashID.oidcProvider` | `string`        | `null`      | OIDC provider name.                                                    |
-| `slashID.forceLogin`   | `boolean`       | `false`     | Make login required.                                                   |
-| `slashID.baseURL`      | `boolean`       | `false`     | Base API URL for the SDK, defaults to the production environment.      |
-| `slashID.sdkURL`       | `boolean`       | `false`     | Base SDK page URL for the SDK, defaults to the production environment. |
-| `slashID.privatePaths` | `PrivatePath[]` | `undefined` | Optional set of private paths.                                         |
+| Name                        | Type            | Default     | Description                                                            |
+| --------------------------- | --------------- | ----------- | ---------------------------------------------------------------------- |
+| `slashID.orgID`             | `string`        | `null`      | The SlashID organization ID.                                           |
+| `slashID.forceLogin`        | `boolean`       | `false`     | Make login required.                                                   |
+| `slashID.baseURL`           | `boolean`       | `false`     | Base API URL for the SDK, defaults to the production environment.      |
+| `slashID.sdkURL`            | `boolean`       | `false`     | Base SDK page URL for the SDK, defaults to the production environment. |
+| `slashID.privatePaths`      | `PrivatePath[]` | `undefined` | Optional set of private paths.                                         |
+| `slashID.formConfiguration` | `object`        | `undefined` | Optional form configuration                                            |
+
+### Form configuration
+
+As mentioned in the above table, it is possible to customise the login form by passing in the `slashID.formConfiguration` object. The values sent here are the same ones that can be passed to the [`<ConfigurationProvider>`](https://developer.slashid.dev/docs/access/react-sdk/reference/components/react-sdk-reference-configurationprovider#props). This lets you specify the authentication methods displayed to your users, customise the UI by swapping the text constants and the logo.
 
 ### Interface: `PrivatePath`
 
