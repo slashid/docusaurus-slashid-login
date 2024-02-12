@@ -1,3 +1,10 @@
+## 0.4.0 (Feb 12, 2024)
+
+High level enhancements
+
+- legacy config params `slashID.oidcClientID` and `slashID.oidcProvider` will be deprecated in the next major version
+- logo, text and authentications methods can now be customised using the `slashID.formConfiguration` option
+
 ## 0.3.3 (Feb 5, 2024)
 
 High level enhancements
