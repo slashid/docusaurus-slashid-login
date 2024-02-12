@@ -26,6 +26,10 @@ Key Features:
 - **Compatible:** Supports Magic Links, Passkeys, OTP via sms and SSO.
 - **Personalization:** Allows to load per-user configuration data into docusaurus.
 
+## Documentation
+
+For detailed setup & usage instructions, please check the [documentation in our developer portal](https://developer.slashid.dev/docs/access/integrations/docusaurus-login). Below you'll find a short summary of steps required to get started quickly.
+
 ## Installation
 
 Theme:
@@ -39,7 +43,51 @@ yarn add @slashid/docusaurus-theme-slashid
 
 ## Configuring `docusaurus.config.js`
 
-Add the following to `docusaurus.config.js` to start using the theme:
+After installing the app and [signing up with SlashID](https://console.slashid.dev/signup) go through the following steps in order.
+
+### Adding the styles
+
+Include the login form styles:
+
+```js
+// under presets
+
+{
+    theme: {
+        customCss: [
+            require.resolve("@slashid/react/style.css"), // add this line
+        ],
+    }
+}
+```
+
+### Adding the Auth button
+
+You can render a button in the navbar to allow customers to log in. To do so, add this item to the `navbar.items` field in the `themeConfig`:
+
+```js
+{
+  // ...
+  themeConfig: ({
+    // ...
+    navbar: {
+      // ...
+      items: [
+        // ...
+        {
+          type: "custom-AuthButton",
+          position: "right",
+          className: "button button--secondary button--lg",
+        },
+      ],
+    },
+  });
+}
+```
+
+### Configure the theme
+
+Add the following to the `themeConfig` in `docusaurus.config.js`:
 
 ```js
 // docusaurus.config.js
@@ -77,22 +125,6 @@ Add the following to `docusaurus.config.js` to start using the theme:
     themes: ["@slashid/docusaurus-theme-slashid"],
   }
 }
-```
-
-Also please remember to include the login form styles:
-
-```js
-// under presets
-
-{
-    theme: {
-        customCss: [
-            require.resolve("./src/css/custom.scss"), // existing custom css
-            require.resolve("@slashid/react/style.css"), // add this line
-        ],
-    }
-}
-
 ```
 
 The configuration options are explained in the following section.
