@@ -85,6 +85,10 @@ const config = {
             path: "/docs/category/tutorial---basics/*",
           },
           {
+            // custom page - not docs based
+            path: "/markdown-page",
+          },
+          {
             path: "/docs/category/tutorial---basics",
           },
         ],

@@ -35,6 +35,7 @@ export interface LegacyThemeConfig {
   baseURL?: string;
   sdkURL?: string;
   privatePaths?: PrivatePath[];
+  // TODO make it configurable to show login instead of redirect
   privateRedirectPath?: string;
 }
 

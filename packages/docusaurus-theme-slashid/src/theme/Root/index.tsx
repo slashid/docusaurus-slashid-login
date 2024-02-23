@@ -7,6 +7,7 @@
 
 import React, { useContext } from "react";
 
+import { Redirect, useLocation } from "@docusaurus/router";
 import useIsBrowser from "@docusaurus/useIsBrowser";
 import {
   SlashIDProvider,
@@ -17,6 +18,7 @@ import {
 
 import "./reset.css";
 import "./globals.css";
+import { shouldPathRender } from "../../domain";
 import { useSlashIDConfig } from "../hooks/useSlashIDConfig";
 import { AuthContext, AuthProvider } from "./auth-context";
 import { SlashID } from "./slashid";
@@ -29,22 +31,32 @@ const AuthCheck: React.FC<AuthCheckProps> = ({ children }) => {
   const { showLogin } = useContext(AuthContext);
   const isBrowser = useIsBrowser();
   const options = useSlashIDConfig();
+  const location = useLocation();
+
+  console.log(
+    "AuthCheck",
+    user,
+    showLogin,
+    options.forceLogin,
+    options.formConfiguration,
+    options.baseURL,
+    options.sdkURL,
+    options.orgID,
+    options
+  );
 
   // TODO figure out where the reference to window is
   if (!isBrowser) {
     return null;
   }
 
-  // if login is configured to be mandatory
-  if (options.forceLogin) {
-    return user ? (
-      <>{children}</>
-    ) : (
-      <SlashID configuration={options.formConfiguration!} />
-    );
+  if (!shouldPathRender(location.pathname, options.privatePaths, user)) {
+    return <Redirect to={options.privateRedirectPath ?? ""} />;
   }
 
-  return showLogin ? (
+  const shouldShowLogin = (options.forceLogin && !user) || showLogin;
+
+  return shouldShowLogin ? (
     <SlashID configuration={options.formConfiguration!} />
   ) : (
     <>{children}</>
