@@ -33,18 +33,6 @@ const AuthCheck: React.FC<AuthCheckProps> = ({ children }) => {
   const options = useSlashIDConfig();
   const location = useLocation();
 
-  console.log(
-    "AuthCheck",
-    user,
-    showLogin,
-    options.forceLogin,
-    options.formConfiguration,
-    options.baseURL,
-    options.sdkURL,
-    options.orgID,
-    options
-  );
-
   // TODO figure out where the reference to window is
   if (!isBrowser) {
     return null;
