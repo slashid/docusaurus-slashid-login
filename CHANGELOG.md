@@ -1,3 +1,9 @@
+## 0.5.0 (Feb 26, 2024)
+
+High level enhancements
+
+- added the `slashID.uxMode` config option to define behaviour when accessing private pages
+
 ## 0.4.0 (Feb 12, 2024)
 
 High level enhancements
