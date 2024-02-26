@@ -133,14 +133,15 @@ The configuration options are explained in the following section.
 
 The `docusaurus-theme-slashid` theme can be configured with the following options:
 
-| Name                        | Type            | Default     | Description                                                            |
-| --------------------------- | --------------- | ----------- | ---------------------------------------------------------------------- |
-| `slashID.orgID`             | `string`        | `null`      | The SlashID organization ID.                                           |
-| `slashID.forceLogin`        | `boolean`       | `false`     | Make login required.                                                   |
-| `slashID.baseURL`           | `boolean`       | `false`     | Base API URL for the SDK, defaults to the production environment.      |
-| `slashID.sdkURL`            | `boolean`       | `false`     | Base SDK page URL for the SDK, defaults to the production environment. |
-| `slashID.privatePaths`      | `PrivatePath[]` | `undefined` | Optional set of private paths.                                         |
-| `slashID.formConfiguration` | `object`        | `undefined` | Optional form configuration                                            |
+| Name                        | Type                  | Default     | Description                                                            |
+| --------------------------- | --------------------- | ----------- | ---------------------------------------------------------------------- |
+| `slashID.orgID`             | `string`              | `null`      | The SlashID organization ID.                                           |
+| `slashID.forceLogin`        | `boolean`             | `false`     | Make login required.                                                   |
+| `slashID.baseURL`           | `boolean`             | `false`     | Base API URL for the SDK, defaults to the production environment.      |
+| `slashID.sdkURL`            | `boolean`             | `false`     | Base SDK page URL for the SDK, defaults to the production environment. |
+| `slashID.uxMode`            | `redirect` or `modal` | `redirect`  | Behaviour when accessing a private path when unauthenticated.          |
+| `slashID.privatePaths`      | `PrivatePath[]`       | `undefined` | Optional set of private paths.                                         |
+| `slashID.formConfiguration` | `object`              | `undefined` | Optional form configuration                                            |
 
 ### Form configuration
 

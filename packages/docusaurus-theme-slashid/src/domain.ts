@@ -25,6 +25,8 @@ export interface ThemeConfig {
   slashID: LegacyThemeConfig | NewThemeConfig;
 }
 
+export type UXMode = "redirect" | "modal";
+
 export interface LegacyThemeConfig {
   orgID: string;
   // @deprecated use formConfiguration instead
@@ -35,6 +37,7 @@ export interface LegacyThemeConfig {
   baseURL?: string;
   sdkURL?: string;
   privatePaths?: PrivatePath[];
+  // TODO make it configurable to show login instead of redirect
   privateRedirectPath?: string;
 }
 
@@ -47,6 +50,8 @@ export interface NewThemeConfig {
   forceLogin?: boolean;
   baseURL?: string;
   sdkURL?: string;
+  // behaviour when accessing a private path
+  uxMode?: UXMode;
   privatePaths?: PrivatePath[];
   privateRedirectPath?: string;
   formConfiguration?: SlashIDConfigurationProviderConfig;

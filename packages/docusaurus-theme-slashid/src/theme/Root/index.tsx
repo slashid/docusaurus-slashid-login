@@ -7,6 +7,7 @@
 
 import React, { useContext } from "react";
 
+import { Redirect, useLocation } from "@docusaurus/router";
 import useIsBrowser from "@docusaurus/useIsBrowser";
 import {
   SlashIDProvider,
@@ -17,6 +18,7 @@ import {
 
 import "./reset.css";
 import "./globals.css";
+import { shouldPathRender } from "../../domain";
 import { useSlashIDConfig } from "../hooks/useSlashIDConfig";
 import { AuthContext, AuthProvider } from "./auth-context";
 import { SlashID } from "./slashid";
@@ -28,24 +30,30 @@ const AuthCheck: React.FC<AuthCheckProps> = ({ children }) => {
   const { user } = useSlashID();
   const { showLogin } = useContext(AuthContext);
   const isBrowser = useIsBrowser();
-  const options = useSlashIDConfig();
+  const config = useSlashIDConfig();
+  const location = useLocation();
 
   // TODO figure out where the reference to window is
   if (!isBrowser) {
     return null;
   }
 
-  // if login is configured to be mandatory
-  if (options.forceLogin) {
-    return user ? (
-      <>{children}</>
-    ) : (
-      <SlashID configuration={options.formConfiguration!} />
-    );
+  // eslint-disable-next-line testing-library/render-result-naming-convention
+  const shouldRenderByPath = shouldPathRender(
+    location.pathname,
+    config.privatePaths,
+    user
+  );
+
+  if (!shouldRenderByPath && config.uxMode === "redirect") {
+    return <Redirect to={config.privateRedirectPath ?? "/"} />;
   }
 
-  return showLogin ? (
-    <SlashID configuration={options.formConfiguration!} />
+  const shouldShowLogin =
+    (config.forceLogin && !user) || showLogin || !shouldRenderByPath;
+
+  return shouldShowLogin ? (
+    <SlashID configuration={config.formConfiguration!} />
   ) : (
     <>{children}</>
   );

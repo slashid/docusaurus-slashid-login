@@ -34,6 +34,7 @@ const DEFAULT_CONFIG: NewThemeConfig = {
   forceLogin: false,
   baseURL: "https://api.slashid.com",
   sdkURL: "https://cdn.slashid.com/sdk.html",
+  uxMode: "redirect",
   privateRedirectPath: "/",
   formConfiguration: {
     storeLastHandle: true,
