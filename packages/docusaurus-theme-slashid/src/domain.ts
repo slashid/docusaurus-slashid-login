@@ -25,6 +25,8 @@ export interface ThemeConfig {
   slashID: LegacyThemeConfig | NewThemeConfig;
 }
 
+export type UXMode = "redirect" | "modal";
+
 export interface LegacyThemeConfig {
   orgID: string;
   // @deprecated use formConfiguration instead
@@ -48,6 +50,8 @@ export interface NewThemeConfig {
   forceLogin?: boolean;
   baseURL?: string;
   sdkURL?: string;
+  // behaviour when accessing a private path
+  uxMode?: UXMode;
   privatePaths?: PrivatePath[];
   privateRedirectPath?: string;
   formConfiguration?: SlashIDConfigurationProviderConfig;

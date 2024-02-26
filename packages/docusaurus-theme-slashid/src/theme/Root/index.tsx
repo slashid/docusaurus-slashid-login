@@ -30,7 +30,7 @@ const AuthCheck: React.FC<AuthCheckProps> = ({ children }) => {
   const { user } = useSlashID();
   const { showLogin } = useContext(AuthContext);
   const isBrowser = useIsBrowser();
-  const options = useSlashIDConfig();
+  const config = useSlashIDConfig();
   const location = useLocation();
 
   // TODO figure out where the reference to window is
@@ -38,14 +38,22 @@ const AuthCheck: React.FC<AuthCheckProps> = ({ children }) => {
     return null;
   }
 
-  if (!shouldPathRender(location.pathname, options.privatePaths, user)) {
-    return <Redirect to={options.privateRedirectPath ?? ""} />;
+  // eslint-disable-next-line testing-library/render-result-naming-convention
+  const shouldRenderByPath = shouldPathRender(
+    location.pathname,
+    config.privatePaths,
+    user
+  );
+
+  if (!shouldRenderByPath && config.uxMode === "redirect") {
+    return <Redirect to={config.privateRedirectPath ?? "/"} />;
   }
 
-  const shouldShowLogin = (options.forceLogin && !user) || showLogin;
+  const shouldShowLogin =
+    (config.forceLogin && !user) || showLogin || !shouldRenderByPath;
 
   return shouldShowLogin ? (
-    <SlashID configuration={options.formConfiguration!} />
+    <SlashID configuration={config.formConfiguration!} />
   ) : (
     <>{children}</>
   );

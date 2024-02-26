@@ -69,6 +69,8 @@ const config = {
         // orgID used for code examples
         orgID: "a6b69fd8-cd7a-f516-2705-d531d709acf8",
         forceLogin: false,
+        // UX when a non-logged in user tries to access a private page (render form in a modal or redirect to the page specified by privateRedirectPath)
+        uxMode: "modal",
         formConfiguration: {
           factors: [{ method: "email_link" }],
           logo: "https://logodix.com/logo/1931244.jpg",
