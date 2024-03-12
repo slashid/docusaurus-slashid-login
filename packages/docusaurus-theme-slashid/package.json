@@ -1,6 +1,6 @@
 {
   "name": "@slashid/docusaurus-theme-slashid",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "SlashID theme for Docusaurus.",
   "keywords": [
     "login",
@@ -51,15 +51,15 @@
     "yalc": "^1.0.0-pre.53"
   },
   "peerDependencies": {
-    "@docusaurus/core": "^2.4.0",
-    "@docusaurus/mdx-loader": "^2.4.0",
-    "@docusaurus/module-type-aliases": "^2.4.0",
-    "@docusaurus/theme-common": "^2.4.0",
-    "@docusaurus/types": "^2.4.0",
-    "@docusaurus/utils": "^2.4.0",
-    "@docusaurus/utils-validation": "^2.4.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "@docusaurus/core": "^2.4.0 || ^3.0.0",
+    "@docusaurus/mdx-loader": "^2.4.0 || ^3.0.0",
+    "@docusaurus/module-type-aliases": "^2.4.0 || ^3.0.0",
+    "@docusaurus/theme-common": "^2.4.0 || ^3.0.0",
+    "@docusaurus/types": "^2.4.0 || ^3.0.0",
+    "@docusaurus/utils": "^2.4.0 || ^3.0.0",
+    "@docusaurus/utils-validation": "^2.4.0 || ^3.0.0",
+    "react": "^17.0.2 || ^18.0.0",
+    "react-dom": "^17.0.2 || ^18.0.0"
   },
   "engines": {
     "node": ">=14"
