@@ -1,3 +1,13 @@
+## 0.5.1 (Mar 13, 2024)
+
+High level enhancements
+
+- added support for Docusaurus v3
+
+Other enhancements and bug fixes
+
+- fixed the issue with content height
+
 ## 0.5.0 (Feb 26, 2024)
 
 High level enhancements
