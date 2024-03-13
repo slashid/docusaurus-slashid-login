@@ -3678,18 +3678,6 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@slashid/docusaurus-theme-slashid@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@slashid/docusaurus-theme-slashid/-/docusaurus-theme-slashid-0.5.0.tgz#541de021c952424ae1395874e2c58b71ebc15fd4"
-  integrity sha512-+wlCYspceISoJfWB4P7J2f/O3d71S/5ZhvTDKYv+y7xGwlGazRJmJDc22KKPYKok+QKt861PUx2TnxjfCrDr/A==
-  dependencies:
-    "@slashid/react" "^1.18.1"
-    "@slashid/slashid" "^3.18.2"
-    buffer "^6.0.3"
-    clsx "^1.1.1"
-    glob-to-regexp "^0.4.1"
-    process "^0.11.10"
-
 "@slashid/react@^1.18.0":
   version "1.18.0"
   resolved "https://registry.yarnpkg.com/@slashid/react/-/react-1.18.0.tgz#5897c566b3fa5ebad8904a54148f23e8e089bb82"
