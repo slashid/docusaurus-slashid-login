@@ -1,4 +1,4 @@
-## 0.5.1 (Mar 13, 2024)
+## 0.5.2 (Mar 13, 2024)
 
 High level enhancements
 
