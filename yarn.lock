@@ -3696,10 +3696,10 @@
     country-flag-emoji-polyfill "^0.1.4"
     country-list-with-dial-code-and-flag "^3.0.2"
 
-"@slashid/react@^1.18.1":
-  version "1.18.1"
-  resolved "https://registry.yarnpkg.com/@slashid/react/-/react-1.18.1.tgz#b1b8f0db3abec333a5cd74ee6d97811cd50b8fce"
-  integrity sha512-Y6MIOc6K8xMFozjGsWPJFEPC9y0Yj2UHEUNU6B9V93W0v6jPJb9BCEPnC+19oqTpCrk+UHSEH4F/hV+BjzxqWg==
+"@slashid/react@^1.22.0":
+  version "1.22.0"
+  resolved "https://registry.yarnpkg.com/@slashid/react/-/react-1.22.0.tgz#47c6ac27114a8cc314756735334a6253c5bc2d93"
+  integrity sha512-K8y6TvSLNczxYLAv6Bbhvl7Wie13EFsxMRKl2rLZs9A2tK1OkaLJ3AiQwu2ndQNu/gN9PQjLMw0UOjWi4SXQ5g==
   dependencies:
     "@radix-ui/react-accordion" "^1.1.2"
     "@radix-ui/react-dialog" "^1.0.4"
@@ -3748,20 +3748,21 @@
     url "^0.11.0"
     uuid "8.3.2"
 
-"@slashid/slashid@^3.18.2":
-  version "3.18.2"
-  resolved "https://registry.yarnpkg.com/@slashid/slashid/-/slashid-3.18.2.tgz#dc610ae2104bfd0fb5e528b42ad4852b50eef75d"
-  integrity sha512-h0t6IBZaRV/Jkl5x+F2/6QqxicdbAo9jllet0ketACeMIbMOoYWPCsRQq0XoK4M3ZAznhb2FBfg0JNHOKogQQg==
+"@slashid/slashid@^3.20.0":
+  version "3.20.0"
+  resolved "https://registry.yarnpkg.com/@slashid/slashid/-/slashid-3.20.0.tgz#56cd672f2ce68ddc3ebf8d6eeab10e0c8fba5454"
+  integrity sha512-JOeG2GtoIX81cd154ac4FEqWtVmw0LfMBK9hJSj6v/kXPNOa+FJKj0LRfH7OjkstmchAGLcSty72TzC8BSpC6w==
   dependencies:
     "@changesets/cli" "^2.26.2"
     "@types/uuid" "8.3.4"
     changeset "^0.2.6"
+    compare-versions "^6.1.0"
     docdash "^1.2.0"
     jwt-decode "^3.1.2"
-    mitt "^3.0.0"
     qrcode "^1.5.1"
     querystring-es3 "^0.2.1"
     regenerator-runtime "^0.13.9"
+    ua-parser-js "^1.0.37"
     url "^0.11.0"
     uuid "8.3.2"
 
@@ -5978,6 +5979,11 @@ compare-func@^2.0.0:
   dependencies:
     array-ify "^1.0.0"
     dot-prop "^5.1.0"
+
+compare-versions@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-6.1.0.tgz#3f2131e3ae93577df111dba133e6db876ffe127a"
+  integrity sha512-LNZQXhqUvqUTotpZ00qLSaify3b4VFD588aRr8MKFw4CMUr98ytzCW5wDH5qx/DEY5kCDXcbcRuCqL0szEf2tg==
 
 compress.js@^1.2.2:
   version "1.2.2"
@@ -14224,6 +14230,11 @@ ua-parser-js@^1.0.35:
   version "1.0.35"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-1.0.35.tgz#c4ef44343bc3db0a3cbefdf21822f1b1fc1ab011"
   integrity sha512-fKnGuqmTBnIE+/KXSzCn4db8RTigUzw1AN0DmdU6hJovUTbYJKyqj+8Mt1c4VfRDnOVJnENmfYkIPZ946UrSAA==
+
+ua-parser-js@^1.0.37:
+  version "1.0.37"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-1.0.37.tgz#b5dc7b163a5c1f0c510b08446aed4da92c46373f"
+  integrity sha512-bhTyI94tZofjo+Dn8SN6Zv8nBDvyXTymAdM3LDI/0IboIUwTu1rEhW7v2TfiVsoYWgkQ4kOVqnI8APUFbIQIFQ==
 
 udc@^1.0.0:
   version "1.0.1"
