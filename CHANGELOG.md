@@ -1,3 +1,9 @@
+## 0.5.4 (Mar 15, 2024)
+
+High level enhancements
+
+- upgrade internal dependencies for improved customisation support
+
 ## 0.5.3 (Mar 15, 2024)
 
 High level enhancements
