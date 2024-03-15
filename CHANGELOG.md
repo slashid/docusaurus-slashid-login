@@ -1,3 +1,14 @@
+## 0.5.3 (Mar 15, 2024)
+
+High level enhancements
+
+- upgraded `@slashid/react` to 1.22.0
+- upgraded `@slashid/slashid` to 3.20.0
+
+Other enhancements and bug fixes
+
+- fixed inconsistency in logo wrapper element when using an image logo
+
 ## 0.5.2 (Mar 13, 2024)
 
 High level enhancements
